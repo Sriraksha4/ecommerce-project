@@ -30,6 +30,8 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
+        console.log("BODY:", req.body);
+
         const { email, password } = req.body;
 
         const user = await User.findOne({ email });
@@ -48,17 +50,17 @@ const loginUser = async (req, res) => {
             });
         }
 
-       const token = jwt.sign(
-    { id: user._id },
-    "mysecretkey",
-    { expiresIn: "1d" }
-);
+        const token = jwt.sign(
+            { id: user._id },
+            "mysecretkey",
+            { expiresIn: "1d" }
+        );
 
-res.status(200).json({
-    message: "Login Successful",
-    token,
-    user
-});
+        res.status(200).json({
+            message: "Login Successful",
+            token,
+            user
+        });
 
     } catch (error) {
         res.status(500).json({
@@ -66,11 +68,26 @@ res.status(200).json({
         });
     }
 };
+
 const getProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select("-password");
 
         res.status(200).json(user);
+
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
+};
+const getAllUsers = async (req, res) => {
+    try {
+
+        const users = await User.find().select("-password");
+
+        res.status(200).json(users);
+
     } catch (error) {
         res.status(500).json({
             message: error.message
@@ -81,5 +98,6 @@ const getProfile = async (req, res) => {
 module.exports = {
     registerUser,
     loginUser,
-    getProfile
+    getProfile,
+    getAllUsers
 };

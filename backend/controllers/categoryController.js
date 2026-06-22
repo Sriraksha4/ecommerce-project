@@ -3,6 +3,8 @@ const Category = require("../models/Category");
 // Add Category
 const addCategory = async (req, res) => {
     try {
+        console.log("BODY:", req.body);
+
         const category = new Category(req.body);
         await category.save();
 
@@ -11,10 +13,13 @@ const addCategory = async (req, res) => {
             category
         });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.log("CATEGORY ERROR:", error);
+
+        res.status(500).json({
+            message: error.message
+        });
     }
 };
-
 // Get All Categories
 const getCategories = async (req, res) => {
     try {

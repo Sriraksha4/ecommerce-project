@@ -3,8 +3,14 @@ const router = express.Router();
 
 const { protect } = require("../middleware/authMiddleware");
 
-const { addOrder } = require("../controllers/orderController");
+const {
+    addOrder,
+    getOrders,
+    updateOrderStatus
+} = require("../controllers/orderController");
 
 router.post("/", protect, addOrder);
+router.get("/", protect, getOrders);
+router.put("/:id", protect, updateOrderStatus);
 
 module.exports = router;
