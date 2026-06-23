@@ -12,6 +12,8 @@ const orderRoutes = require("./routes/orderRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
 const aiRoutes = require("./routes/aiRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
+const customerRoutes = require("./routes/customerRoutes");
 
 const connectDB = require("./config/db");
 
@@ -28,6 +30,8 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/ai", aiRoutes);
 app.use("/api/payments", paymentRoutes);
+app.use("/api/upload", uploadRoutes);
+app.use("/api/customers", customerRoutes);
 
 connectDB();
 
