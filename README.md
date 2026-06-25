@@ -1,97 +1,202 @@
 # AuraCommerce - Smart E-Commerce Management System with AI Assistant & Analytics
 
-A premium, scalable, and intelligent dual-sided e-commerce platform built using the MERN stack, integrated with Google Gemini AI for smart copy generation and database-driven ETL analytics dashboards.
+A premium, scalable, and intelligent dual-sided e-commerce platform built using the MERN stack. AuraCommerce integrates Google Gemini AI for smart product copywriting, an ETL-driven analytics dashboard for sales tracking, and secure dual-role workflows for customers and administrators.
 
-Conducted in collaboration with **Commonwealth Bank of Australia (CBA)** and **TeamLease Foundation** (June 2026).
-
----
-
-## 👥 Team Structure & Roles
-
-| Name | Role | Responsibilities | Branch Name |
-| :--- | :--- | :--- | :--- |
-| **Sriraksha K R** | Backend Developer | Authentication, REST APIs, Order Management, Business Logic, AI copywriter | `backend-ai` |
-| **Sathya Swaroop** | Frontend Developer | Home Page, Login UI, Product Listing, Cart UI, Dashboard UI, App Styling | `frontend-ui` |
-| **Swathi S** | Database Developer | MongoDB Design, Product Models, Category Management, Inventory, Seed Data | `database` |
-| **Dhrona R Teekinavaru** | AI/ML & Integration | Analytics Dashboard, AI Assistant, ETL Analytics, Testing, QA | `testing-integration` |
+Conducted in collaboration with the **Commonwealth Bank of Australia (CBA)** and **TeamLease Foundation** (June 2026).
 
 ---
 
-## 🏗️ System Architecture
+## 📋 Table of Contents
+1. [Project Synopsis & Abstract](#-project-synopsis--abstract)
+2. [Prerequisites & System Requirements](#-prerequisites--system-requirements)
+3. [Project Directory Structure](#-project-directory-structure)
+4. [Installation & Setup Steps](#-installation--setup-steps)
+5. [Database Schema & Seed Catalog](#-database-schema--seed-catalog)
+6. [Running the Application Locally](#-running-the-application-locally)
+7. [Admin vs. Customer Workflows](#-admin-vs-customer-workflows)
+8. [Step-by-Step Git Collaboration Workflow](#-step-by-step-git-collaboration-workflow)
 
-AuraCommerce is designed using a **Three-Tier Architecture** ensuring high scalability, modularity, and security:
+---
 
+## 📖 Project Synopsis & Abstract
+
+### Abstract
+The **Smart E-Commerce Management System with AI Assistant and Analytics Dashboard** is a MERN-based application designed to bridge modern full-stack development, cloud database architecture, and artificial intelligence. 
+* **Customers** can browse products, manage wishlists, place orders, print invoices, and converse with a Google Gemini-powered shopping assistant.
+* **Administrators** are equipped with real-time sales overview metrics, inventory level alerts, customer active status switches, and an automated AI copywriting console.
+
+### Key Technologies Used
+* **Frontend**: React.js, CSS3 (Light/Dark themes), React Router v7, Bootstrap, Bootstrap Icons
+* **Backend**: Node.js, Express.js, JWT Authentication
+* **Database**: MongoDB Atlas (NoSQL)
+* **AI Integration**: Google Gemini API (`gemini-1.5-flash`) / Groq SDK Llama-3 fallback
+* **Cloud Storage**: AWS S3 (Simple Storage Service) for product images
+
+---
+
+## ⚙️ Prerequisites & System Requirements
+
+Ensure the following tools are installed on your local machine before setting up the application:
+
+1. **Node.js**: Version `18.0.0` or higher. [Download Node.js](https://nodejs.org/).
+2. **npm**: Node Package Manager (comes bundled with Node.js).
+3. **Git**: For version control and branch collaboration. [Download Git](https://git-scm.com/).
+4. **MongoDB Atlas Account**: A cloud cluster to host database collections. [Create MongoDB Account](https://www.mongodb.com/cloud/atlas).
+5. **Gemini or Groq API Key**: For natural language processing and AI copy generation.
+
+---
+
+## 📂 Project Directory Structure
+
+```text
+ecommerce-project/
+├── backend/
+│   ├── config/             # Database connection setups
+│   ├── controllers/        # Business logic controllers (User, Product, Order, AI, etc.)
+│   ├── middleware/         # Auth verify checks (JWT extraction)
+│   ├── models/             # Mongoose schemas (User, Product, Category, Order, Payment)
+│   ├── routes/             # Express API endpoints
+│   ├── .env                # Backend environment config (git-ignored)
+│   ├── server.js           # Server initialization file
+│   └── package.json        # Backend dependencies & startup scripts
+└── frontend/
+    ├── src/
+    │   ├── components/     # Reusable layout containers (Sidebar, Navbar, ProtectedRoute)
+    │   ├── context/        # React global state managers (Auth, Cart, Theme)
+    │   ├── pages/          # Pages (Home, Shop, Details, Admin Dashboard, AIGenerator)
+    │   ├── services/       # API axios clients and helper utilities (utils.js)
+    │   ├── App.css         # Global stylesheets and animation keys
+    │   ├── App.js          # React Router mappings
+    │   └── index.js        # React bootstrap mount
+    └── package.json        # Frontend package configuration
 ```
-┌────────────────────────────────────────────────────────┐
-│                   PRESENTATION TIER                    │
-│      React.js / CSS3 / Context API (Theme & Auth)      │
-└───────────────────────────┬────────────────────────────┘
-                            │ (REST APIs / JWT Auth)
-┌───────────────────────────▼────────────────────────────┐
-│                    APPLICATION TIER                    │
-│      Node.js / Express.js / Google Gemini AI / Groq     │
-└───────────────────────────┬────────────────────────────┘
-                            │ (Mongoose ODM / AWS SDK)
-┌───────────────────────────▼────────────────────────────┐
-│                       DATA TIER                        │
-│           MongoDB Atlas / AWS S3 Cloud Storage         │
-└────────────────────────────────────────────────────────┘
-```
 
 ---
 
-## ⚙️ Setup & Local Installation
+## 🚀 Installation & Setup Steps
 
-### Prerequisites
-* [Node.js](https://nodejs.org) (v16+)
-* [Git](https://git-scm.com)
-* A [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database) Account
+Follow these instructions to install all packages and configure dependencies:
 
-### 1. Clone the Project
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/yourusername/ecommerce-project.git
 cd ecommerce-project
 ```
 
-### 2. Configure Backend Environment
-Create a `.env` file under the `/backend` folder:
+### 2. Configure Backend Credentials
+Create a file named `.env` inside the `/backend` folder:
+```bash
+# Windows Command Prompt / PowerShell:
+notepad backend/.env
+```
+Add the following keys (replace placeholders with your actual credentials):
 ```env
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
-GROQ_API_KEY=your_groq_api_key
-AWS_ACCESS_KEY_ID=your_aws_key
-AWS_SECRET_ACCESS_KEY=your_aws_secret
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/auracommerce?retryWrites=true&w=majority
+GROQ_API_KEY=gsk_your_groq_api_key_here
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret_key
 AWS_REGION=ap-south-1
 AWS_BUCKET_NAME=your_s3_bucket_name
 ```
 
-### 3. Initialize & Start Servers
+### 3. Install Backend Dependencies
+Navigate to the `backend` directory and install the packages:
+```bash
+cd backend
+npm install
+```
+This will install core dependencies:
+* `express` - Server framework
+* `mongoose` - Database ODM
+* `jsonwebtoken` - Secure customer/admin token generation
+* `bcryptjs` - Password hashing
+* `@google/generative-ai` - Gemini SDK
 
-* **Start Backend Server**:
-  ```bash
-  cd backend
-  npm install
-  npm start
-  ```
-  *(Verifies: `Server Running` and `MongoDB Connected`)*
-
-* **Seed Initial Data** (Optional - populated with 21 rich products & categories):
-  ```bash
-  node seed_premium_catalog.js
-  ```
-
-* **Start Frontend Dev Server**:
-  ```bash
-  cd ../frontend
-  npm install
-  npm start
-  ```
-  *(React will launch on [http://localhost:3000](http://localhost:3000))*
+### 4. Install Frontend Dependencies
+Open a new terminal session, navigate to the `frontend` folder, and install:
+```bash
+cd ../frontend
+npm install
+```
+This will install UI packages:
+* `axios` - Promise-based HTTP client for API requests
+* `react-router-dom` - Navigation routes manager
+* `bootstrap` & `bootstrap-icons` - Layout components and icons
 
 ---
 
-## 🛠️ Step-by-Step Git Collaboration Workflow
-To align with the trainer's guidelines, team members work on separate feature branches and merge changes into `main` only through reviewed Pull Requests.
+## 📊 Database Schema & Seed Catalog
+
+Before running the storefront, run the seeder script to populate your MongoDB Atlas Cluster 0 database with 21 premium products across laptops, mobiles, headphones, watches, clothing, furniture, and books.
+
+Run the seeder from the `backend` directory:
+```bash
+cd backend
+node seed_premium_catalog.js
+```
+*Expected Output:*
+```text
+Connected to MongoDB Atlas.
+Cleared categories.
+Cleared products.
+Seeded 7 categories.
+Seeded 21 products with gorgeous high-quality images.
+Disconnected.
+```
+
+To promote a registered email address to **Admin**, run:
+```bash
+node promote_admin.js
+```
+*(Promotes `srirakshakr.4@gmail.com` to admin role and sets up the backup administrator `admin@auracommerce.com` with password `Admin@1234`)*
+
+---
+
+## 💻 Running the Application Locally
+
+Start both servers to begin testing the storefront and administrative panel:
+
+### Start the Backend API Server
+In the `backend` directory:
+```bash
+npm run start
+```
+*Expected console logs:*
+```text
+Server Running
+MongoDB Connected
+```
+
+### Start the Frontend React Dev Server
+In the `frontend` directory:
+```bash
+npm run start
+```
+This will start the local server on [http://localhost:3000](http://localhost:3000) and open it automatically in your default browser.
+
+---
+
+## 🛡️ Admin vs. Customer Workflows
+
+The application handles two completely separate user roles:
+
+### 👤 Customer Flow ([http://localhost:3000/login](http://localhost:3000/login))
+* **Actions**: Register accounts -> Log in -> Search & filter products -> Add to Wishlist/Cart -> Checkout (COD/UPI/Card) -> Track Order -> Print Invoice.
+* **Logout**: Click the **User Name/Initial** button on the top-right header navbar to open the dropdown menu, then select the red **Logout** option.
+
+### 👑 Admin Flow ([http://localhost:3000/admin-login](http://localhost:3000/admin-login))
+* **Credential Gates**: Only users holding `role: "admin"` in the database can authenticate. Customers are blocked automatically.
+* **Console Tools**:
+  * **Dashboard**: Track sales trends, order volumes, and inventory alerts.
+  * **Products**: Create, edit, and delete items. Contains a **✨ AI Generate Copy** button inside add/edit modals to generate description details.
+  * **Orders**: Track and update fulfillment status (Pending, Shipped, Delivered, Cancelled) using dropdown selections.
+  * **Customers**: Control user status (activate or deactivate users).
+
+---
+
+## 🤝 Step-by-Step Git Collaboration Workflow
+Collaborators work on separate branches to keep the codebase safe.
 
 ```
        [Feature Branch] ────► [Write Code] ────► [Push Branch] 
@@ -99,56 +204,36 @@ To align with the trainer's guidelines, team members work on separate feature br
 [Main Branch (Latest)] ◄─── [Merge PR] ◄─── [Approve PR] ◄─── [Create PR]
 ```
 
-### Step 1: Clone & Invite Collaborators
-1. Create the repository on GitHub and push the main codebase.
-2. In the repository settings, go to **Settings** -> **Collaborators** -> **Add People** and invite team members.
+### 1. Invite Your Teammates
+Go to your GitHub repository -> **Settings** -> **Collaborators** -> **Add People** -> Invite all team members.
 
-### Step 2: Create a Feature Branch
-Before writing code, checkout a new branch (never work directly on `main`):
+### 2. Create Your Branch
 ```bash
-# Switch to main and pull the latest code
+# Pull latest main changes first
 git checkout main
 git pull origin main
 
-# Create and switch to your feature branch
-git checkout -b <your-branch-name>
+# Create your feature branch
+git checkout -b <your-name-feature>
 ```
-*Example*: `git checkout -b backend-ai`
+*Example:* `git checkout -b sriraksha-backend`
 
-### Step 3: Write Code & Commit
-Make changes to your controllers, models, or UI components. Keep commits small and clean:
+### 3. Commit and Push
 ```bash
 git add .
-git commit -m "Added separate admin-login route and controller verification"
+git commit -m "Implement admin-only middleware verification gates"
+git push -u origin sriraksha-backend
 ```
 
-### Step 4: Push to GitHub
-Publish your feature branch to the remote repository:
-```bash
-git push -u origin <your-branch-name>
-```
+### 4. Open a Pull Request (PR) & Review
+* Open the GitHub repository in your browser.
+* Click **Compare & Pull Request**.
+* Fill in details of what you completed and submit.
+* Teammates can click **Files Changed** to review your lines of code. Once approved, the PR can be merged into `main`.
 
-### Step 5: Open a Pull Request (PR)
-1. Go to the repository on GitHub.
-2. Click the green **Compare & Pull Request** button that appears.
-3. Choose to merge from `<your-branch-name>` into `main`.
-4. Provide details of the changes and click **Create Pull Request**.
-
-### Step 6: Review & Merge
-1. Other teammates open the **Pull Requests** tab.
-2. They click the PR to review all lines of changed code, comment, and click **Approve**.
-3. Once approved, the author (or team lead) clicks **Merge Pull Request**.
-
-### Step 7: Sync the Team
-After a PR is merged, all other team members must sync their local workspaces to get the updates:
+### 5. Pull Latest Changes
 ```bash
 git checkout main
 git pull origin main
 ```
-
----
-
-## 🖼️ Foolproof Image Safeguard Guarantee
-To prevent incorrect or mismatched placeholders from appearing in catalog listings (like watch images showing up for laptops):
-* **Direct Database Mapping**: Every seeded product has highly relevant, high-resolution photo URLs populated in MongoDB.
-* **Client-Side Fallback Logic** ([utils.js](file:///c:/ecommerce-project/frontend/src/services/utils.js)): If no image URL is provided, a dynamic resolver checks the category/name for hardware keywords (`"dell"`, `"hp"`, `"lenovo"`, `"macbook"`, `"intel"`, etc.) and automatically assigns a computer setup mockup graphic instead of general icons, ensuring a polished demonstration.
+This updates your local workspace with everyone's approved merges.
