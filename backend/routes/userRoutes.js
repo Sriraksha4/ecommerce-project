@@ -5,15 +5,31 @@ const {
     registerUser,
     loginUser,
     getProfile,
+    updateProfile,
+    changePassword,
+    toggleWishlist,
+    getWishlist,
+    toggleUserActiveStatus,
     getAllUsers
 } = require("../controllers/userController");
 
 const { protect } = require("../middleware/authMiddleware");
 
-router.get("/", getAllUsers);
+// Admin routes
+router.get("/", protect, getAllUsers);
+router.put("/status/:id", protect, toggleUserActiveStatus);
 
+// Auth routes
 router.post("/register", registerUser);
 router.post("/login", loginUser);
+
+// Profile routes
 router.get("/profile", protect, getProfile);
+router.put("/profile", protect, updateProfile);
+router.put("/change-password", protect, changePassword);
+
+// Wishlist routes
+router.get("/wishlist", protect, getWishlist);
+router.post("/wishlist", protect, toggleWishlist);
 
 module.exports = router;
