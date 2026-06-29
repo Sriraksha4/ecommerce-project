@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { CartContext } from "../context/CartContext";
 import { ThemeContext } from "../context/ThemeContext";
 import API from "../services/api";
-import { getProductImage } from "../services/utils";
+import { getProductImage, formatCurrency } from "../services/utils";
 
 const Wishlist = () => {
   const { toggleWishlist, user } = useContext(AuthContext);
@@ -191,9 +191,9 @@ const Wishlist = () => {
                       
                       {/* Price section */}
                       <div className="d-flex align-items-center gap-2 mt-2">
-                        <span className="fs-5 fw-bold text-primary">${finalPrice}</span>
+                        <span className="fs-5 fw-bold text-primary">{formatCurrency(finalPrice)}</span>
                         {originalPrice && (
-                          <span className="text-decoration-line-through text-muted small">${originalPrice}</span>
+                          <span className="text-decoration-line-through text-muted small">{formatCurrency(originalPrice)}</span>
                         )}
                       </div>
 

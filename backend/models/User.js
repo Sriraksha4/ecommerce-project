@@ -18,6 +18,16 @@ const userSchema = new mongoose.Schema({
         sparse: true
     },
 
+    age: {
+        type: Number,
+        default: null
+    },
+
+    gender: {
+        type: String,
+        default: ""
+    },
+
     password: {
         type: String,
         required: true

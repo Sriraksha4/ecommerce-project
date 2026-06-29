@@ -1,57 +1,195 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --primary-color: #3b82f6;
-  --primary-glow: rgba(59, 130, 246, 0.15);
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --sidebar-w: 260px;
-  --sidebar-w-collapsed: 70px;
-  --body-bg: #0b0f19;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --color-ink: #111111;
+  --color-surface: #f7f2ea;
+  --color-surface-strong: #ffffff;
+  --color-surface-muted: #ede6dc;
+  --color-border: rgba(17, 17, 17, 0.1);
+  --color-border-strong: rgba(17, 17, 17, 0.18);
+  --color-accent: #8f6b3d;
+  --color-accent-soft: rgba(143, 107, 61, 0.12);
+  --color-accent-deep: #6f4e2d;
+  --color-success: #0f7a5d;
+  --color-warning: #a86b1d;
+  --color-danger: #8d2d2d;
+
+  --text-main: #171717;
+  --text-muted: #6f665c;
+  --text-soft: #8c8478;
+
+  --surface-overlay: rgba(255, 251, 246, 0.78);
+  --surface-overlay-strong: rgba(255, 255, 255, 0.94);
+  --surface-shadow: 0 24px 80px rgba(17, 17, 17, 0.08);
+  --surface-shadow-soft: 0 12px 36px rgba(17, 17, 17, 0.06);
+  --surface-shadow-strong: 0 30px 100px rgba(17, 17, 17, 0.14);
+
+  --bg-gradient: radial-gradient(circle at top left, rgba(143, 107, 61, 0.16), transparent 35%), linear-gradient(180deg, #f8f3ec 0%, #f2ebe2 48%, #fbf8f3 100%);
+  --body-bg: #f6f1e8;
+  --body-bg-alt: #ede6dc;
+
+  --sidebar-w: 280px;
+  --sidebar-w-collapsed: 84px;
+
+  --radius-xs: 8px;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  --transition-fast: 160ms ease;
+  --transition-base: 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-slow: 360ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  --content-width: 1240px;
 }
 
-[data-theme="light"] {
-  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --card-border: rgba(15, 23, 42, 0.08);
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --body-bg: #f8fafc;
+[data-theme="dark"] {
+  --color-surface: #111111;
+  --color-surface-strong: #171717;
+  --color-surface-muted: #1d1d1d;
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+  --color-accent: #d7b36d;
+  --color-accent-soft: rgba(215, 179, 109, 0.12);
+  --color-accent-deep: #f1d7a0;
+  --text-main: #f5efe7;
+  --text-muted: #c2b9ad;
+  --text-soft: #9f968a;
+  --surface-overlay: rgba(18, 18, 18, 0.78);
+  --surface-overlay-strong: rgba(23, 23, 23, 0.94);
+  --surface-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  --surface-shadow-soft: 0 12px 36px rgba(0, 0, 0, 0.22);
+  --surface-shadow-strong: 0 30px 100px rgba(0, 0, 0, 0.34);
+  --bg-gradient: radial-gradient(circle at top left, rgba(215, 179, 109, 0.12), transparent 35%), linear-gradient(180deg, #111111 0%, #161616 48%, #101010 100%);
+  --body-bg: #111111;
+  --body-bg-alt: #171717;
+}
+
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .text-body-secondary,
+[data-theme="dark"] .form-text,
+[data-theme="dark"] .small.text-muted,
+[data-theme="dark"] .extra-small.text-muted {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .text-dark,
+[data-theme="dark"] .text-black {
+  color: var(--text-main) !important;
+}
+
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-light {
+  background-color: var(--surface-overlay-strong) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder,
+[data-theme="dark"] .form-control::placeholder,
+[data-theme="dark"] .form-select::placeholder {
+  color: var(--text-soft) !important;
+  opacity: 1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--body-bg);
+  font-family: var(--font-body);
+  background: var(--bg-gradient);
   color: var(--text-main);
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(17, 17, 17, 0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(17, 17, 17, 0.018) 1px, transparent 1px);
+  background-size: 100% 42px, 42px 100%;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.28), transparent 85%);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: color-mix(in srgb, var(--color-accent) 70%, #fff 30%);
+  border-radius: var(--radius-pill);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: var(--color-accent);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }

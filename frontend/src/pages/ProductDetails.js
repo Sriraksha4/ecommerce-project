@@ -4,7 +4,7 @@ import API from "../services/api";
 import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
 import { ThemeContext } from "../context/ThemeContext";
-import { getProductImage } from "../services/utils";
+import { getProductImage, formatCurrency } from "../services/utils";
 import ProductCard from "../components/ProductCard";
 
 const ProductDetails = () => {
@@ -224,10 +224,10 @@ const ProductDetails = () => {
 
             {/* Pricing Section */}
             <div className="d-flex align-items-center gap-3 mb-4">
-              <span className="h2 text-primary fw-extrabold m-0">${finalPrice}</span>
+              <span className="h2 text-primary fw-extrabold m-0">{formatCurrency(finalPrice)}</span>
               {originalPrice && (
                 <>
-                  <span className="text-decoration-line-through text-muted fs-5 m-0">${originalPrice}</span>
+                  <span className="text-decoration-line-through text-muted fs-5 m-0">{formatCurrency(originalPrice)}</span>
                   <span className="badge bg-danger rounded-pill px-3 py-1 font-bold">-{product.discount}% OFF</span>
                 </>
               )}

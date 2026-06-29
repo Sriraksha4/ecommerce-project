@@ -31,13 +31,15 @@ const Layout = ({ children }) => {
           <div className="d-flex align-items-center">
             <button
               onClick={() => setCollapsed(!collapsed)}
-              className="btn btn-dark border-0 rounded-circle p-2 me-3"
-              style={{ width: "40px", height: "40px" }}
+              className="btn btn-outline-primary border-0 rounded-circle p-2 me-3 icon-button-luxury"
               aria-label="Toggle Sidebar"
             >
-              <i className={`bi ${collapsed ? "bi-list" : "bi-arrow-left-short"} fs-5 text-muted`}></i>
+              <i className={`bi ${collapsed ? "bi-list" : "bi-arrow-left-short"} fs-5`}></i>
             </button>
-            <h4 className="m-0 fw-bold text-white">{getPageTitle()}</h4>
+            <div>
+              <p className="mb-1 section-kicker">Enterprise Console</p>
+              <h4 className="m-0 fw-semibold">{getPageTitle()}</h4>
+            </div>
           </div>
 
           <div className="d-flex align-items-center gap-3">
@@ -53,22 +55,22 @@ const Layout = ({ children }) => {
             </div>
 
             {/* Notifications */}
-            <button className="btn btn-dark border-0 rounded-circle position-relative p-2" style={{ width: "40px", height: "40px" }}>
-              <i className="bi-bell text-muted fs-5"></i>
+            <button className="btn btn-outline-primary border-0 rounded-circle position-relative p-2 icon-button-luxury">
+              <i className="bi-bell fs-5"></i>
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-dark border-2 p-1" style={{ fontSize: "0.5rem" }}>
                 2
               </span>
             </button>
 
             {/* User Profile */}
-            <div className="d-flex align-items-center gap-2 border-start border-secondary border-opacity-25 ps-3 ms-1">
+            <div className="d-flex align-items-center gap-2 border-start ps-3 ms-1" style={{ borderColor: "var(--color-border)" }}>
               <div className="d-flex flex-column text-end d-none d-sm-block">
-                <span className="text-white fw-bold small m-0">{user?.name || "Admin"}</span>
+                <span className="fw-bold small m-0">{user?.name || "Admin"}</span>
                 <span className="text-muted extra-small text-capitalize" style={{ fontSize: "0.75rem" }}>{user?.role || "Staff"}</span>
               </div>
               <div 
-                className="bg-primary rounded-circle text-white d-flex align-items-center justify-content-center fw-bold"
-                style={{ width: "40px", height: "40px", fontSize: "1rem" }}
+                className="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold"
+                style={{ width: "40px", height: "40px", fontSize: "1rem", background: "var(--color-accent)" }}
               >
                 {user?.name ? user.name[0].toUpperCase() : "A"}
               </div>
