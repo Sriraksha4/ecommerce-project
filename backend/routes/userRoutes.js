@@ -7,6 +7,7 @@ const {
     getProfile,
     updateProfile,
     changePassword,
+    deleteProfile,
     toggleWishlist,
     getWishlist,
     toggleUserActiveStatus,
@@ -26,6 +27,7 @@ router.post("/login", loginUser);
 // Profile routes
 router.get("/profile", protect, getProfile);
 router.put("/profile", protect, updateProfile);
+router.delete("/profile", protect, deleteProfile);
 router.put("/change-password", protect, changePassword);
 
 // Wishlist routes

@@ -3,21 +3,14 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <div 
-      className="p-5 rounded-4 mb-5 text-start position-relative overflow-hidden" 
-      style={{ 
-        background: "linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%)", 
-        border: "1px solid rgba(255,255,255,0.06)",
-        boxShadow: "0 10px 40px rgba(0,0,0,0.4)"
-      }}
-    >
+    <div className="hero-shell p-4 p-lg-5 mb-5 text-start">
       {/* Background glow graphics */}
       <div 
         className="position-absolute" 
         style={{ 
           width: "250px", 
           height: "250px", 
-          background: "radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%)", 
+          background: "radial-gradient(circle, rgba(143,107,61,0.18) 0%, rgba(0,0,0,0) 70%)", 
           top: "-50px", 
           right: "-50px",
           pointerEvents: "none"
@@ -37,14 +30,14 @@ const HeroSection = () => {
 
       <div className="row align-items-center py-4 position-relative z-1">
         <div className="col-12 col-lg-7">
-          <span className="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25 px-3 py-2 mb-3 rounded-pill fw-semibold" style={{ fontSize: "0.8rem", letterSpacing: "1px" }}>
-            EXCLUSIVELY FOR YOU &bull; UP TO 40% OFF
+          <span className="eyebrow mb-3">
+            Exclusively for you
           </span>
-          <h1 className="display-4 fw-extrabold text-white mb-3" style={{ lineHeight: "1.2" }}>
+          <h1 className="hero-display fw-semibold mb-3" style={{ lineHeight: "0.95" }}>
             Discover the Future <br />
             of E-Commerce Shopping
           </h1>
-          <p className="lead text-muted mb-4 fs-6 lh-lg" style={{ maxWidth: "600px" }}>
+          <p className="lead mb-4 fs-6 lh-lg max-w-600" style={{ color: "var(--text-muted)" }}>
             Step into the next-generation shopping catalog. Explore our curation of electronics, apparel, and lifestyle items. Fully responsive tracking, order pipelines, and an administrative panel powered by AI.
           </p>
           <div className="d-flex flex-wrap gap-3">
@@ -59,12 +52,12 @@ const HeroSection = () => {
         <div className="col-12 col-lg-5 d-none d-lg-block text-center">
           <div className="position-relative d-inline-block">
             <div 
-              className="position-absolute bg-primary bg-opacity-20 rounded-circle filter blur" 
-              style={{ width: "300px", height: "300px", zIndex: "-1", top: "-20px", left: "-20px", filter: "blur(40px)" }}
+              className="position-absolute rounded-circle" 
+              style={{ width: "300px", height: "300px", zIndex: "-1", top: "-20px", left: "-20px", filter: "blur(40px)", background: "rgba(143,107,61,0.14)" }}
             ></div>
             <i 
-              className="bi-bag-check-fill text-primary" 
-              style={{ fontSize: "12rem", filter: "drop-shadow(0 15px 30px rgba(59,130,246,0.3))" }}
+              className="bi-bag-check-fill" 
+              style={{ fontSize: "12rem", color: "var(--color-accent)", filter: "drop-shadow(0 15px 30px rgba(143,107,61,0.22))", animation: "floatGentle 5s ease-in-out infinite" }}
             ></i>
           </div>
         </div>

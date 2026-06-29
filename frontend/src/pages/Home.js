@@ -201,10 +201,10 @@ const Home = () => {
 
       {/* Testimonials */}
       <div className="mb-5 py-4">
-        <h4 className="fw-bold mb-4 text-center">What Our Customers Say</h4>
+        <h4 className="fw-bold mb-4 text-center" style={{ color: "var(--text-main)" }}>What Our Customers Say</h4>
         <div className="row g-4">
           <div className="col-12 col-md-4">
-            <div className="card h-100 border-0 p-4 shadow-sm" style={{ background: theme === "light" ? "rgba(0,0,0,0.02)" : "rgba(255,255,255,0.03)", borderRadius: "16px", border: "1px solid var(--card-border)" }}>
+            <div className="card h-100 border-0 p-4 shadow-sm" style={{ background: theme === "light" ? "rgba(0,0,0,0.02)" : "rgba(255,255,255,0.03)", borderRadius: "16px", border: "1px solid var(--card-border)", color: "var(--text-main)" }}>
               <div className="d-flex align-items-center gap-1 text-warning mb-3">
                 <i className="bi-star-fill"></i>
                 <i className="bi-star-fill"></i>
@@ -212,18 +212,18 @@ const Home = () => {
                 <i className="bi-star-fill"></i>
                 <i className="bi-star-fill"></i>
               </div>
-              <p className="text-muted small mb-3">"Exceptional quality products and lightning-fast delivery! AuraCommerce has completely redefined my online shopping experience. Strongly recommended."</p>
+              <p className="small mb-3" style={{ color: "var(--text-muted)" }}>"Exceptional quality products and lightning-fast delivery! AuraCommerce has completely redefined my online shopping experience. Strongly recommended."</p>
               <div className="d-flex align-items-center gap-2 mt-auto">
-                <div className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style={{ width: "36px", height: "36px" }}>S</div>
+                <div className="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold" style={{ width: "36px", height: "36px", background: "var(--color-accent)" }}>S</div>
                 <div>
-                  <h6 className="fw-bold m-0 small">Sarah Jenkins</h6>
-                  <span className="text-muted extra-small">Verified Buyer</span>
+                  <h6 className="fw-bold m-0 small" style={{ color: "var(--text-main)" }}>Sarah Jenkins</h6>
+                  <span className="extra-small" style={{ color: "var(--text-muted)" }}>Verified Buyer</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="col-12 col-md-4">
-            <div className="card h-100 border-0 p-4 shadow-sm" style={{ background: theme === "light" ? "rgba(0,0,0,0.02)" : "rgba(255,255,255,0.03)", borderRadius: "16px", border: "1px solid var(--card-border)" }}>
+            <div className="card h-100 border-0 p-4 shadow-sm" style={{ background: theme === "light" ? "rgba(0,0,0,0.02)" : "rgba(255,255,255,0.03)", borderRadius: "16px", border: "1px solid var(--card-border)", color: "var(--text-main)" }}>
               <div className="d-flex align-items-center gap-1 text-warning mb-3">
                 <i className="bi-star-fill"></i>
                 <i className="bi-star-fill"></i>
@@ -231,18 +231,18 @@ const Home = () => {
                 <i className="bi-star-fill"></i>
                 <i className="bi-star-fill"></i>
               </div>
-              <p className="text-muted small mb-3">"The customer support team resolved my exchange query in minutes. The products are authentic, matching description exactly. Great experience!"</p>
+              <p className="small mb-3" style={{ color: "var(--text-muted)" }}>"The customer support team resolved my exchange query in minutes. The products are authentic, matching description exactly. Great experience!"</p>
               <div className="d-flex align-items-center gap-2 mt-auto">
-                <div className="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style={{ width: "36px", height: "36px" }}>M</div>
+                <div className="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold" style={{ width: "36px", height: "36px", background: "var(--color-success)" }}>M</div>
                 <div>
-                  <h6 className="fw-bold m-0 small">Marcus Aurelius</h6>
-                  <span className="text-muted extra-small">Verified Buyer</span>
+                  <h6 className="fw-bold m-0 small" style={{ color: "var(--text-main)" }}>Marcus Aurelius</h6>
+                  <span className="extra-small" style={{ color: "var(--text-muted)" }}>Verified Buyer</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="col-12 col-md-4">
-            <div className="card h-100 border-0 p-4 shadow-sm" style={{ background: theme === "light" ? "rgba(0,0,0,0.02)" : "rgba(255,255,255,0.03)", borderRadius: "16px", border: "1px solid var(--card-border)" }}>
+            <div className="card h-100 border-0 p-4 shadow-sm" style={{ background: theme === "light" ? "rgba(0,0,0,0.02)" : "rgba(255,255,255,0.03)", borderRadius: "16px", border: "1px solid var(--card-border)", color: "var(--text-main)" }}>
               <div className="d-flex align-items-center gap-1 text-warning mb-3">
                 <i className="bi-star-fill"></i>
                 <i className="bi-star-fill"></i>
@@ -250,12 +250,12 @@ const Home = () => {
                 <i className="bi-star-fill"></i>
                 <i className="bi-star-fill"></i>
               </div>
-              <p className="text-muted small mb-3">"I am in love with the dark theme layout and premium aesthetics. Browsing and checkout are smooth as butter. A premium brand indeed."</p>
+              <p className="small mb-3" style={{ color: "var(--text-muted)" }}>"I am in love with the dark theme layout and premium aesthetics. Browsing and checkout are smooth as butter. A premium brand indeed."</p>
               <div className="d-flex align-items-center gap-2 mt-auto">
-                <div className="bg-purple text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style={{ width: "36px", height: "36px" }}>E</div>
+                <div className="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold" style={{ width: "36px", height: "36px", background: "var(--color-accent-deep)" }}>E</div>
                 <div>
-                  <h6 className="fw-bold m-0 small">Elena Rostova</h6>
-                  <span className="text-muted extra-small">Verified Buyer</span>
+                  <h6 className="fw-bold m-0 small" style={{ color: "var(--text-main)" }}>Elena Rostova</h6>
+                  <span className="extra-small" style={{ color: "var(--text-muted)" }}>Verified Buyer</span>
                 </div>
               </div>
             </div>
@@ -267,10 +267,11 @@ const Home = () => {
       <div className="p-4 p-md-5 rounded-4 shadow-sm text-center mb-5 mt-5"
            style={{ 
              background: theme === "light" ? "linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%)" : "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
-             border: theme === "light" ? "1px solid rgba(14, 165, 233, 0.1)" : "1px solid rgba(255,255,255,0.04)"
+             border: theme === "light" ? "1px solid rgba(14, 165, 233, 0.1)" : "1px solid rgba(255,255,255,0.04)",
+             color: theme === "light" ? "#0f172a" : "#f5efe7"
            }}>
-        <h3 className="fw-bold mb-2">Subscribe to Our Newsletter</h3>
-        <p className="text-muted small max-w-600 mx-auto mb-4">
+        <h3 className="fw-bold mb-2" style={{ color: "inherit" }}>Subscribe to Our Newsletter</h3>
+        <p className="small max-w-600 mx-auto mb-4" style={{ color: theme === "light" ? "rgba(15, 23, 42, 0.72)" : "var(--text-muted)" }}>
           Stay up to date with new arrivals, exclusive discount coupons, and community announcements! No spam, unsubscribe anytime.
         </p>
         <form onSubmit={(e) => { e.preventDefault(); alert('Subscribed successfully!'); }} className="d-flex flex-column flex-sm-row gap-2 max-w-600 mx-auto">
@@ -282,7 +283,8 @@ const Home = () => {
             style={{ 
               background: theme === "light" ? "#fff" : "rgba(30,41,59,0.7)", 
               border: "1px solid rgba(59,130,246,0.2)",
-              color: theme === "light" ? "#000" : "#fff" 
+              color: theme === "light" ? "#000" : "#fff",
+              caretColor: theme === "light" ? "#000" : "#fff"
             }}
           />
           <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold text-nowrap">
@@ -294,24 +296,24 @@ const Home = () => {
       {/* Benefits / Showcase Banner */}
       <div className="row g-4 mb-4 mt-5">
         <div className="col-12 col-md-4">
-          <div className="p-4 rounded-4 h-100" style={{ background: "rgba(30, 41, 59, 0.25)", border: "1px solid var(--card-border)" }}>
-            <div className="fs-3 text-primary mb-2"><i className="bi-truck"></i></div>
-            <h6 className="fw-bold mb-1">Secure Delivery</h6>
-            <p className="text-muted small mb-0 lh-base">Safe and tracked logistics directly from our warehouses to your doorstep.</p>
+          <div className="p-4 rounded-4 h-100" style={{ background: "rgba(30, 41, 59, 0.25)", border: "1px solid var(--card-border)", color: "var(--text-main)" }}>
+            <div className="fs-3 mb-2" style={{ color: "var(--color-accent)" }}><i className="bi-truck"></i></div>
+            <h6 className="fw-bold mb-1" style={{ color: "var(--text-main)" }}>Secure Delivery</h6>
+            <p className="small mb-0 lh-base" style={{ color: "var(--text-muted)" }}>Safe and tracked logistics directly from our warehouses to your doorstep.</p>
           </div>
         </div>
         <div className="col-12 col-md-4">
-          <div className="p-4 rounded-4 h-100" style={{ background: "rgba(30, 41, 59, 0.25)", border: "1px solid var(--card-border)" }}>
-            <div className="fs-3 text-primary mb-2"><i className="bi-arrow-left-right"></i></div>
-            <h6 className="fw-bold mb-1">Easy Exchanges</h6>
-            <p className="text-muted small mb-0 lh-base">Hassle-free 7-day exchange window if items do not match descriptions.</p>
+          <div className="p-4 rounded-4 h-100" style={{ background: "rgba(30, 41, 59, 0.25)", border: "1px solid var(--card-border)", color: "var(--text-main)" }}>
+            <div className="fs-3 mb-2" style={{ color: "var(--color-accent)" }}><i className="bi-arrow-left-right"></i></div>
+            <h6 className="fw-bold mb-1" style={{ color: "var(--text-main)" }}>Easy Exchanges</h6>
+            <p className="small mb-0 lh-base" style={{ color: "var(--text-muted)" }}>Hassle-free 7-day exchange window if items do not match descriptions.</p>
           </div>
         </div>
         <div className="col-12 col-md-4">
-          <div className="p-4 rounded-4 h-100" style={{ background: "rgba(30, 41, 59, 0.25)", border: "1px solid var(--card-border)" }}>
-            <div className="fs-3 text-primary mb-2"><i className="bi-credit-card-2-front"></i></div>
-            <h6 className="fw-bold mb-1">Safe Checkout</h6>
-            <p className="text-muted small mb-0 lh-base">Encrypted transaction records keeping user orders data private.</p>
+          <div className="p-4 rounded-4 h-100" style={{ background: "rgba(30, 41, 59, 0.25)", border: "1px solid var(--card-border)", color: "var(--text-main)" }}>
+            <div className="fs-3 mb-2" style={{ color: "var(--color-accent)" }}><i className="bi-credit-card-2-front"></i></div>
+            <h6 className="fw-bold mb-1" style={{ color: "var(--text-main)" }}>Safe Checkout</h6>
+            <p className="small mb-0 lh-base" style={{ color: "var(--text-muted)" }}>Encrypted transaction records keeping user orders data private.</p>
           </div>
         </div>
       </div>

@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer className="py-5" style={{ background: "#080c14", borderTop: "1px solid rgba(255,255,255,0.05)", color: "#94a3b8" }}>
+    <footer className="py-5 footer-luxury">
       <div className="container">
         <div className="row g-4">
           {/* Brand info */}
           <div className="col-12 col-md-4">
-            <h5 className="text-white fw-bold d-flex align-items-center mb-3">
-              <i className="bi-bag-heart-fill text-primary me-2"></i> AuraCommerce
+            <h5 className="fw-bold d-flex align-items-center mb-3 footer-brand-luxury">
+              <i className="bi-bag-heart-fill me-2"></i> AuraCommerce
             </h5>
             <p className="small lh-lg">
               Explore premium products curated for your daily lifestyle. Shop with speed, security, and full tracking dashboards.
@@ -22,7 +22,7 @@ const Footer = () => {
           </div>
           {/* Links 1 */}
           <div className="col-6 col-md-2 offset-md-1">
-            <h6 className="text-white fw-bold small mb-3">QUICK LINKS</h6>
+            <h6 className="fw-bold small mb-3">QUICK LINKS</h6>
             <ul className="list-unstyled d-flex flex-column gap-2 small">
               <li><Link to="/" className="text-muted text-decoration-none hover-text-white">Home</Link></li>
               <li><Link to="/shop" className="text-muted text-decoration-none hover-text-white">Shop Catalog</Link></li>
@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
           {/* Links 2 */}
           <div className="col-6 col-md-2">
-            <h6 className="text-white fw-bold small mb-3">ACCOUNT</h6>
+            <h6 className="fw-bold small mb-3">ACCOUNT</h6>
             <ul className="list-unstyled d-flex flex-column gap-2 small">
               <li><Link to="/profile" className="text-muted text-decoration-none hover-text-white">My Profile</Link></li>
               <li><Link to="/my-orders" className="text-muted text-decoration-none hover-text-white">Order History</Link></li>
@@ -40,7 +40,7 @@ const Footer = () => {
           </div>
           {/* Contact */}
           <div className="col-12 col-md-3">
-            <h6 className="text-white fw-bold small mb-3">STORE LOCATION</h6>
+            <h6 className="fw-bold small mb-3">STORE LOCATION</h6>
             <p className="small lh-lg mb-2">
               <i className="bi-geo-alt me-2 text-primary"></i> 102 E-Commerce Park, Tech Zone, Bengaluru, India
             </p>
