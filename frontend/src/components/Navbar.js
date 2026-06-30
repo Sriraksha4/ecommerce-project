@@ -17,18 +17,13 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`navbar navbar-expand-lg ${theme === "light" ? "navbar-light" : "navbar-dark"} sticky-top`} 
-      style={{ 
-        background: theme === "light" ? "rgba(255, 255, 255, 0.92)" : "rgba(15, 23, 42, 0.95)", 
-        borderBottom: theme === "light" ? "1px solid rgba(0, 0, 0, 0.08)" : "1px solid rgba(255, 255, 255, 0.08)", 
-        backdropFilter: "blur(12px)" 
-      }}
+      className={`navbar navbar-expand-lg sticky-top navbar-luxury ${theme === "light" ? "navbar-light" : "navbar-dark"}`}
     >
       <div className="container">
         {/* Brand */}
-        <Link className="navbar-brand fw-bold d-flex align-items-center" to="/">
-          <i className="bi-bag-heart-fill text-primary me-2 fs-4"></i>
-          <span className={theme === "light" ? "text-dark fw-extrabold" : "text-white fw-extrabold"} style={{ letterSpacing: "0.5px" }}>AuraCommerce</span>
+        <Link className="navbar-brand fw-bold d-flex align-items-center gap-2" to="/">
+          <i className="bi-bag-heart-fill text-primary fs-4"></i>
+          <span className="fw-bold" style={{ letterSpacing: "0.12em", textTransform: "uppercase" }}>AuraCommerce</span>
         </Link>
         {/* Toggler */}
         <button
@@ -46,18 +41,17 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="storefrontNavbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li className="nav-item">
-              <Link className="nav-link fw-semibold px-3" to="/">Home</Link>
+              <Link className="nav-link fw-semibold px-3 nav-link-luxury" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link fw-semibold px-3" to="/shop">Shop</Link>
+              <Link className="nav-link fw-semibold px-3 nav-link-luxury" to="/shop">Shop</Link>
             </li>
           </ul>
           <div className="d-flex align-items-center gap-3">
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className={`btn ${theme === "light" ? "btn-light" : "btn-dark"} border-0 rounded-circle p-2 d-flex align-items-center justify-content-center`}
-              style={{ width: "42px", height: "42px" }}
+              className="btn btn-outline-primary rounded-circle p-2 d-flex align-items-center justify-content-center icon-button-luxury"
               title="Toggle Theme"
             >
               {theme === "light" ? (
@@ -70,8 +64,7 @@ const Navbar = () => {
             {/* Wishlist */}
             <Link
               to="/wishlist"
-              className={`btn ${theme === "light" ? "btn-light" : "btn-dark"} border-0 rounded-circle p-2 position-relative d-flex align-items-center justify-content-center`}
-              style={{ width: "42px", height: "42px" }}
+              className="btn btn-outline-primary rounded-circle p-2 position-relative d-flex align-items-center justify-content-center icon-button-luxury"
               title="My Wishlist"
             >
               <i className="bi-heart text-danger fs-5"></i>
@@ -85,8 +78,7 @@ const Navbar = () => {
             {/* Shopping Cart */}
             <Link
               to="/cart"
-              className={`btn ${theme === "light" ? "btn-light" : "btn-dark"} border-0 rounded-circle position-relative p-2 d-flex align-items-center justify-content-center`}
-              style={{ width: "42px", height: "42px" }}
+              className="btn btn-outline-primary rounded-circle position-relative p-2 d-flex align-items-center justify-content-center icon-button-luxury"
               title="View Cart"
             >
               <i className={`bi-cart2 ${theme === "light" ? "text-dark" : "text-light"} fs-5`}></i>
@@ -100,27 +92,26 @@ const Navbar = () => {
             {user ? (
               <div className="dropdown">
                 <button
-                  className={`btn ${theme === "light" ? "btn-light" : "btn-dark"} border-0 rounded-pill px-3 py-2 d-flex align-items-center gap-2`}
+                  className="btn btn-outline-primary border-0 rounded-pill px-3 py-2 d-flex align-items-center gap-2 profile-pill-luxury"
                   type="button"
                   id="profileDropdown"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   <div 
-                    className="bg-primary rounded-circle text-white d-flex align-items-center justify-content-center fw-bold"
-                    style={{ width: "30px", height: "30px", fontSize: "0.85rem" }}
+                    className="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold"
+                    style={{ width: "30px", height: "30px", fontSize: "0.85rem", background: "var(--color-accent)" }}
                   >
                     {user.name ? user.name[0].toUpperCase() : "U"}
                   </div>
-                  <span className={`${theme === "light" ? "text-dark" : "text-white"} small fw-bold d-none d-sm-inline`}>
+                  <span className="small fw-bold d-none d-sm-inline">
                     {user.name ? user.name.split(" ")[0] : "User"}
                   </span>
                   <i className="bi-chevron-down text-muted small"></i>
                 </button>
                 <ul 
-                  className={`dropdown-menu dropdown-menu-end ${theme === "light" ? "" : "dropdown-menu-dark"} border border-secondary border-opacity-25 mt-2`} 
+                  className="dropdown-menu dropdown-menu-end border mt-2"
                   aria-labelledby="profileDropdown" 
-                  style={{ borderRadius: "12px", background: theme === "light" ? "#ffffff" : "#0f172a" }}
                 >
                   <li>
                     <Link className="dropdown-item py-2 small d-flex align-items-center" to="/profile">

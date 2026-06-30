@@ -4,7 +4,7 @@ import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
 import { ThemeContext } from "../context/ThemeContext";
 import API from "../services/api";
-import { getProductImage } from "../services/utils";
+import { getProductImage, formatCurrency } from "../services/utils";
 
 const Checkout = () => {
   const { 
@@ -392,7 +392,7 @@ const Checkout = () => {
                 className="btn btn-gradient w-100 py-3 rounded-pill d-flex align-items-center justify-content-center fw-bold text-white mt-4"
                 disabled={cart.length === 0}
               >
-                <i className="bi-lock-fill me-2"></i> Authorize & Place Order (₹{Number(grandTotal).toLocaleString("en-IN")})
+                <i className="bi-lock-fill me-2"></i> Authorize & Place Order ({formatCurrency(grandTotal)})
               </button>
             </form>
           </div>
@@ -425,11 +425,11 @@ const Checkout = () => {
                     />
                     <div>
                       <div className="text-white small fw-bold text-truncate" style={{ maxWidth: "150px", color: "var(--text-main) !important" }}>{item.product.name}</div>
-                      <div className="text-muted extra-small">{item.quantity} x ${item.product.price}</div>
+                      <div className="text-muted extra-small">{item.quantity} x {formatCurrency(item.product.price)}</div>
                     </div>
                   </div>
                   <div className="fw-bold small">
-                    ${(item.product.price * item.quantity)}
+                    {formatCurrency(item.product.price * item.quantity)}
                   </div>
                 </div>
               ))}
@@ -438,35 +438,27 @@ const Checkout = () => {
             <div className="border-top pt-3 mt-3" style={{ borderColor: "var(--card-border)" }}>
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <span className="text-muted small">Subtotal:</span>
-                <span className="small fw-semibold">
-  ₹{Number(subtotal).toLocaleString("en-IN")}
-</span>
+                <span className="small fw-semibold">{formatCurrency(subtotal)}</span>
               </div>
               {coupon.code && (
                 <div className="d-flex justify-content-between align-items-center mb-2 text-success">
                   <span className="small">Coupon Discount ({coupon.code}):</span>
-                  <span className="small fw-bold">
-  -₹{Number(discountAmount).toLocaleString("en-IN")}
-</span>
+                  <span className="small fw-bold">-{formatCurrency(discountAmount)}</span>
                 </div>
               )}
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <span className="text-muted small">GST (18%):</span>
-                <span className="small fw-semibold">
-  ₹{Number(gstAmount).toLocaleString("en-IN")}
-</span>
+                <span className="small fw-semibold">{formatCurrency(gstAmount)}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <span className="text-muted small">Delivery Charges:</span>
                 <span className={shippingFee === 0 ? "text-success small fw-bold" : "small fw-semibold"}>
-                  {shippingFee === 0 ? "FREE" : `₹${shippingFee}`}
+                  {shippingFee === 0 ? "FREE" : formatCurrency(shippingFee)}
                 </span>
               </div>
               <div className="d-flex justify-content-between align-items-center mt-3 border-top pt-3" style={{ borderColor: "var(--card-border)" }}>
                 <span className="fw-bold">Payable Balance:</span>
-                <span className="text-primary fw-extrabold fs-5">
-  ₹{Number(grandTotal).toLocaleString("en-IN")}
-</span>
+                <span className="text-primary fw-extrabold fs-5">{formatCurrency(grandTotal)}</span>
               </div>
             </div>
           </div>

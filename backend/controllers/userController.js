@@ -190,7 +190,7 @@ const getProfile = async (req, res) => {
 // Edit User Profile
 const updateProfile = async (req, res) => {
     try {
-        const { name, email, phone, address, profilePhoto } = req.body;
+        const { name, email, phone, age, gender, address, profilePhoto } = req.body;
 
         const user = await User.findById(req.user.id);
         if (!user) {
@@ -223,6 +223,8 @@ const updateProfile = async (req, res) => {
         }
 
         if (name) user.name = name;
+        if (age !== undefined && age !== null && age !== "") user.age = Number(age);
+        if (gender !== undefined) user.gender = gender;
         if (address) user.address = address;
         if (profilePhoto) user.profilePhoto = profilePhoto;
 
@@ -235,6 +237,22 @@ const updateProfile = async (req, res) => {
             message: "Profile updated successfully",
             user: updatedUser
         });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// Delete Self Profile
+const deleteProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        await User.deleteOne({ _id: req.user.id });
+
+        res.status(200).json({ message: "Account deleted successfully" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -363,6 +381,7 @@ module.exports = {
     getProfile,
     updateProfile,
     changePassword,
+    deleteProfile,
     toggleWishlist,
     getWishlist,
     toggleUserActiveStatus,

@@ -4,7 +4,7 @@ import API from "../services/api";
 import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
 import { ThemeContext } from "../context/ThemeContext";
-import { getProductImage } from "../services/utils";
+import { getProductImage, formatCurrency } from "../services/utils";
 import ProductCard from "../components/ProductCard";
 
 const ProductDetails = () => {
@@ -224,12 +224,10 @@ const ProductDetails = () => {
 
             {/* Pricing Section */}
             <div className="d-flex align-items-center gap-3 mb-4">
-              <span className="h2 text-primary fw-extrabold m-0">
-  ${Number(finalPrice).toLocaleString("en-IN")}
-</span>
+              <span className="h2 text-primary fw-extrabold m-0">{formatCurrency(finalPrice)}</span>
               {originalPrice && (
                 <>
-                  <span className="text-decoration-line-through text-muted fs-5 m-0">${originalPrice}</span>
+                  <span className="text-decoration-line-through text-muted fs-5 m-0">{formatCurrency(originalPrice)}</span>
                   <span className="badge bg-danger rounded-pill px-3 py-1 font-bold">-{product.discount}% OFF</span>
                 </>
               )}
@@ -283,25 +281,6 @@ const ProductDetails = () => {
                 <i className="bi-exclamation-circle-fill me-2"></i> This product is currently sold out and unavailable.
               </div>
             )}
-            <button
-  onClick={handleWishlistToggle}
-  disabled={wishlistLoading}
-  className="btn btn-dark rounded-circle p-2 border-0 d-flex align-items-center justify-content-center"
-  style={{
-    width: "42px",
-    height: "42px",
-    background: theme === "light"
-      ? "rgba(0,0,0,0.05)"
-      : "rgba(255,255,255,0.05)"
-  }}
-  title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
->
-  {isWishlisted ? (
-    <i className="bi-heart-fill text-danger fs-5"></i>
-  ) : (
-    <i className="bi-heart text-danger fs-5"></i>
-  )}
-</button>
 
             {/* Back Button */}
             <div className="mt-auto border-top border-secondary border-opacity-10 pt-4">

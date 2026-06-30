@@ -116,3 +116,14 @@ export const getProductImage = (product) => {
   // 8. General fallback for other categories/products
   return "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=500&q=80";
 };
+
+/**
+ * Formats numeric values as Indian rupees.
+ *
+ * @param {number|string} amount
+ * @returns {string}
+ */
+export const formatCurrency = (amount) => {
+  const numericAmount = Number(amount || 0);
+  return `₹${numericAmount.toLocaleString("en-IN")}`;
+};

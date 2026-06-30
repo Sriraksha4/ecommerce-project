@@ -204,36 +204,4 @@ Collaborators work on separate branches to keep the codebase safe.
 [Main Branch (Latest)] ◄─── [Merge PR] ◄─── [Approve PR] ◄─── [Create PR]
 ```
 
-### 1. Invite Your Teammates
-Go to your GitHub repository -> **Settings** -> **Collaborators** -> **Add People** -> Invite all team members.
 
-### 2. Create Your Branch
-```bash
-# Pull latest main changes first
-git checkout main
-git pull origin main
-
-# Create your feature branch
-git checkout -b <your-name-feature>
-```
-*Example:* `git checkout -b sriraksha-backend`
-
-### 3. Commit and Push
-```bash
-git add .
-git commit -m "Implement admin-only middleware verification gates"
-git push -u origin sriraksha-backend
-```
-
-### 4. Open a Pull Request (PR) & Review
-* Open the GitHub repository in your browser.
-* Click **Compare & Pull Request**.
-* Fill in details of what you completed and submit.
-* Teammates can click **Files Changed** to review your lines of code. Once approved, the PR can be merged into `main`.
-
-### 5. Pull Latest Changes
-```bash
-git checkout main
-git pull origin main
-```
-This updates your local workspace with everyone's approved merges.

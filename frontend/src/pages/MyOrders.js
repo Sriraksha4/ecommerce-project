@@ -302,7 +302,7 @@ const MyOrders = () => {
                     <div>
                       <span className="text-muted small me-2">Total Paid:</span>
                       <strong className="text-primary fw-extrabold fs-5">
-                        ${order.totalAmount}
+                        ₹{order.totalAmount}
                       </strong>
                     </div>
                     <span className={`badge-status badge-${order.status?.toLowerCase() || "pending"}`}>
@@ -338,7 +338,7 @@ const MyOrders = () => {
                           </div>
                         </div>
                         <div className="text-end">
-                          <div className="fw-bold small">${product.price}</div>
+                          <div className="fw-bold small">₹${product.price}</div>
                           <span className="extra-small text-muted" style={{ fontSize: "0.7rem" }}>Quantity: 1</span>
                         </div>
                       </div>

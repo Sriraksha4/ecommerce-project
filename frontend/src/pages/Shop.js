@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import API from "../services/api";
 import ProductCard from "../components/ProductCard";
 import { ThemeContext } from "../context/ThemeContext";
+import { formatCurrency } from "../services/utils";
 
 const Shop = () => {
   const location = useLocation();
@@ -146,10 +147,10 @@ const Shop = () => {
         {/* Left Side: Sidebar Filters */}
         <div className="col-12 col-lg-3">
           <div 
-            className="p-4 rounded-4 shadow-sm" 
+            className="p-4 rounded-4 shadow-sm luxury-card filter-panel" 
             style={{ 
-              background: theme === "light" ? "rgba(255,255,255,0.8)" : "rgba(30, 41, 59, 0.4)", 
-              border: theme === "light" ? "1px solid rgba(0,0,0,0.08)" : "1px solid rgba(255,255,255,0.06)" 
+              background: theme === "light" ? "rgba(255,255,255,0.82)" : "rgba(17,17,17,0.36)", 
+              border: theme === "light" ? "1px solid rgba(17,17,17,0.08)" : "1px solid rgba(255,255,255,0.08)" 
             }}
           >
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -166,10 +167,10 @@ const Shop = () => {
             <div className="mb-4">
               <label className="form-label text-muted small fw-bold mb-2">CATEGORY</label>
               <select 
-                className="form-select rounded-3 bg-dark border-secondary border-opacity-25 text-white py-2 small"
+                className="form-select filter-select rounded-4 py-2 small"
                 value={selectedCategory}
                 onChange={(e) => handleCategorySelect(e.target.value)}
-                style={{ background: theme === "light" ? "#fff" : "#0f172a", color: theme === "light" ? "#000" : "#fff" }}
+                style={{ background: theme === "light" ? "#fff" : "rgba(17,17,17,0.72)", color: "var(--text-main)" }}
               >
                 <option value="">All Categories</option>
                 {categories.map((cat) => (
@@ -182,10 +183,10 @@ const Shop = () => {
             <div className="mb-4">
               <label className="form-label text-muted small fw-bold mb-2">BRAND</label>
               <select 
-                className="form-select rounded-3 bg-dark border-secondary border-opacity-25 text-white py-2 small"
+                className="form-select filter-select rounded-4 py-2 small"
                 value={selectedBrand}
                 onChange={(e) => { setSelectedBrand(e.target.value); setCurrentPage(1); }}
-                style={{ background: theme === "light" ? "#fff" : "#0f172a", color: theme === "light" ? "#000" : "#fff" }}
+                style={{ background: theme === "light" ? "#fff" : "rgba(17,17,17,0.72)", color: "var(--text-main)" }}
               >
                 <option value="">All Brands</option>
                 {brands.map((b, idx) => (
@@ -198,7 +199,7 @@ const Shop = () => {
             <div className="mb-4">
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <label className="form-label text-muted small fw-bold m-0">PRICE LIMIT</label>
-                <span className="text-primary fw-bold small">${maxPrice}</span>
+                <span className="text-primary fw-bold small">{formatCurrency(maxPrice)}</span>
               </div>
               <input 
                 type="range" 
@@ -269,11 +270,14 @@ const Shop = () => {
             {/* Autocomplete Dropdown list */}
             {showSuggestions && suggestions.length > 0 && (
               <ul 
-                className={`position-absolute w-100 list-unstyled rounded-3 mt-1 shadow-lg border p-1`} 
+                className="filter-suggestions position-absolute w-100 list-unstyled mt-2 shadow-lg border p-2" 
                 style={{ 
                   zIndex: 10, 
-                  background: theme === "light" ? "#fff" : "#1e293b", 
-                  borderColor: theme === "light" ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)"
+                  background: theme === "light" ? "rgba(255,255,255,0.98)" : "rgba(17,17,17,0.96)", 
+                  borderColor: theme === "light" ? "rgba(17,17,17,0.08)" : "rgba(255,255,255,0.08)",
+                  borderRadius: "20px",
+                  maxHeight: "260px",
+                  overflowY: "auto"
                 }}
               >
                 {suggestions.map((p) => (
@@ -283,12 +287,12 @@ const Shop = () => {
                         setSearch(p.name);
                         setShowSuggestions(false);
                       }}
-                      className="btn btn-link text-decoration-none w-100 text-start px-3 py-2 small d-flex align-items-center gap-2 hover-text-white"
+                      className="filter-suggestion-item btn btn-link text-decoration-none w-100 text-start px-3 py-2 small d-flex align-items-center gap-2"
                       style={{ color: "var(--text-main)" }}
                     >
                       <i className="bi-search text-muted small"></i>
                       <span>{p.name}</span>
-                      <span className="badge bg-primary ms-auto extra-small">{p.category}</span>
+                      <span className="badge ms-auto extra-small" style={{ background: "var(--color-accent-soft)", color: "var(--color-accent)", borderRadius: "999px" }}>{p.category}</span>
                     </button>
                   </li>
                 ))}
@@ -304,12 +308,12 @@ const Shop = () => {
             <div className="d-flex align-items-center gap-2">
               <span className="text-muted small fw-semibold text-nowrap">Sort By:</span>
               <select 
-                className="form-select form-select-sm rounded-pill border-secondary border-opacity-25"
+                className="form-select form-select-sm rounded-pill border-secondary border-opacity-25 filter-select"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 style={{ 
                   width: "180px", 
-                  background: theme === "light" ? "#fff" : "#1e293b", 
+                  background: theme === "light" ? "#fff" : "rgba(17,17,17,0.72)", 
                   color: "var(--text-main)" 
                 }}
               >

@@ -9,201 +9,82 @@ const Layout = ({ children }) => {
   const location = useLocation();
 
   const getPageTitle = () => {
-    switch (location.pathname) {
-      case "/dashboard":
-        return "Dashboard";
-      case "/products":
-        return "Products";
-      case "/categories":
-        return "Categories";
-      case "/orders":
-        return "Orders";
-      case "/customers":
-        return "Customers";
-      case "/payments":
-        return "Payments";
-      case "/analytics":
-        return "Analytics";
-      case "/ai-generator":
-        return "AI Product Generator";
-      default:
-        return "AuraCommerce Admin";
-    }
+    const path = location.pathname;
+    if (path === "/dashboard") return "Dashboard Statistics";
+    if (path === "/products") return "Products Inventory";
+    if (path === "/categories") return "Categories Management";
+    if (path === "/orders") return "Orders Management";
+    if (path === "/customers") return "Customers Directory";
+    if (path === "/ai-generator") return "AI Description Generator";
+    return "Admin Panel";
   };
 
   return (
-    <div
-      className="app-container"
-      style={{
-        background: "#F8FAFC",
-        minHeight: "100vh",
-        display: "flex"
-      }}
-    >
+    <div className="app-container">
+      {/* Admin Sidebar */}
       <Sidebar collapsed={collapsed} />
 
-      <div
-        className="main-content"
-        style={{
-          flex: 1,
-          marginLeft: collapsed ? "70px" : "260px",
-          transition: ".3s",
-          background: "#F1F5F9"
-        }}
-      >
-        <header
-          className="navbar-custom"
-          style={{
-            height: "70px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "0 30px",
-            background: "#FFFFFF",
-            borderBottom: "1px solid #E2E8F0",
-            position: "sticky",
-            top: 0,
-            zIndex: 100
-          }}
-        >
+      {/* Admin Main Content Wrapper */}
+      <div className="main-content d-flex flex-column flex-grow-1">
+        {/* Admin Header Navbar */}
+        <header className="navbar-custom">
           <div className="d-flex align-items-center">
             <button
-              className="btn btn-primary rounded-circle me-3"
-              style={{
-                width: "42px",
-                height: "42px"
-              }}
               onClick={() => setCollapsed(!collapsed)}
+              className="btn btn-outline-primary border-0 rounded-circle p-2 me-3 icon-button-luxury"
+              aria-label="Toggle Sidebar"
             >
-              <i
-                className={`bi ${
-                  collapsed ? "bi-list" : "bi-layout-sidebar"
-                }`}
-              ></i>
+              <i className={`bi ${collapsed ? "bi-list" : "bi-arrow-left-short"} fs-5`}></i>
             </button>
-
             <div>
-              <h4 className="text-white mb-0 fw-bold">
-                {getPageTitle()}
-              </h4>
-
-              <small className="text-secondary">
-                Welcome back, {user?.name}
-              </small>
+              <p className="mb-1 section-kicker">Enterprise Console</p>
+              <h4 className="m-0 fw-semibold">{getPageTitle()}</h4>
             </div>
           </div>
 
-                    <div className="d-flex align-items-center gap-3">
-
-            {/* Search Box */}
-
-            <div
-              className="position-relative d-none d-md-block"
-            >
-
-              <i
-                className="bi bi-search position-absolute"
-                style={{
-                  left: "15px",
-                  top: "12px",
-                  color: "#265ead"
-                }}
-              ></i>
-
+          <div className="d-flex align-items-center gap-3">
+            {/* Global Search */}
+            <div className="d-none d-md-flex align-items-center position-relative me-3">
+              <i className="bi-search text-muted position-absolute start-3 ms-3"></i>
               <input
                 type="text"
-                placeholder="Search products..."
-                className="form-control"
-                style={{
-                  width: "260px",
-                  paddingLeft: "42px",
-                  background: "#8b9ecc",
-                  border: "1px solid #89afe3",
-                  color: "white",
-                  borderRadius: "12px"
-                }}
+                placeholder="Search console..."
+                className="form-control form-control-custom ps-5"
+                style={{ width: "220px" }}
               />
-
             </div>
 
-            {/* Notification */}
-
-            <button
-              className="btn position-relative"
-              style={{
-                background: "#0f172a",
-                color: "white",
-                borderRadius: "12px",
-                width: "45px",
-                height: "45px"
-              }}
-            >
-
-              <i className="bi bi-bell-fill"></i>
-
-              <span
-                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-              >
-                3
+            {/* Notifications */}
+            <button className="btn btn-outline-primary border-0 rounded-circle position-relative p-2 icon-button-luxury">
+              <i className="bi-bell fs-5"></i>
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-dark border-2 p-1" style={{ fontSize: "0.5rem" }}>
+                2
               </span>
-
             </button>
 
-            {/* Profile */}
-
-            <div className="d-flex align-items-center">
-
-              <img
-                src={
-                  user?.profilePhoto ||
-                  "https://i.pravatar.cc/150?img=25"
-                }
-                alt="Profile"
-                style={{
-                  width: "48px",
-                  height: "48px",
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                  border: "3px solid #2563EB"
-                }}
-              />
-
-              <div className="ms-3">
-
-                <h6
-                  className="text-white mb-0"
-                >
-                  {user?.name}
-                </h6>
-
-                <small
-                  className="text-info text-capitalize"
-                >
-                  {user?.role}
-                </small>
-
+            {/* User Profile */}
+            <div className="d-flex align-items-center gap-2 border-start ps-3 ms-1" style={{ borderColor: "var(--color-border)" }}>
+              <div className="d-flex flex-column text-end d-none d-sm-block">
+                <span className="fw-bold small m-0">{user?.name || "Admin"}</span>
+                <span className="text-muted extra-small text-capitalize" style={{ fontSize: "0.75rem" }}>{user?.role || "Staff"}</span>
               </div>
-
+              <div 
+                className="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold"
+                style={{ width: "40px", height: "40px", fontSize: "1rem", background: "var(--color-accent)" }}
+              >
+                {user?.name ? user.name[0].toUpperCase() : "A"}
+              </div>
             </div>
-
           </div>
-
         </header>
 
-        <div
-          style={{
-            padding: "30px"
-          }}
-        >
-
+        {/* Page Content */}
+        <main className="container-fluid p-0 fade-in flex-grow-1">
           {children}
-
-        </div>
-
+        </main>
       </div>
-
     </div>
-  )
- 
-        };    
+  );
+};
+
 export default Layout;

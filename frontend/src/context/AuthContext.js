@@ -74,12 +74,36 @@ if (adminLogin && receivedUser.role !== "admin") {
     }
   };
 
+  const fetchProfile = async () => {
+    try {
+      const response = await API.get("/users/profile");
+      const profileUser = response.data;
+      localStorage.setItem("user", JSON.stringify(profileUser));
+      setUser(profileUser);
+      return { success: true, user: profileUser };
+    } catch (error) {
+      const errMsg = error.response?.data?.message || "Failed to load profile.";
+      return { success: false, message: errMsg };
+    }
+  };
+
   const changePassword = async (oldPassword, newPassword) => {
     try {
       const response = await API.put("/users/change-password", { oldPassword, newPassword });
       return { success: true, message: response.data.message || "Password changed successfully" };
     } catch (error) {
       const errMsg = error.response?.data?.message || "Password change failed.";
+      return { success: false, message: errMsg };
+    }
+  };
+
+  const deleteAccount = async () => {
+    try {
+      const response = await API.delete("/users/profile");
+      logout();
+      return { success: true, message: response.data.message || "Account deleted successfully" };
+    } catch (error) {
+      const errMsg = error.response?.data?.message || "Account deletion failed.";
       return { success: false, message: errMsg };
     }
   };
@@ -106,7 +130,7 @@ if (adminLogin && receivedUser.role !== "admin") {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, updateProfile, changePassword, toggleWishlist, logout }}>
+    <AuthContext.Provider value={{ user, token, loading, login, register, updateProfile, fetchProfile, changePassword, deleteAccount, toggleWishlist, logout }}>
       {!loading && children}
     </AuthContext.Provider>
   );
