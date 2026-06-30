@@ -103,7 +103,7 @@ const Cart = () => {
                         </Link>
                         <div className="text-muted extra-small" style={{ fontSize: "0.75rem" }}>{item.product.category}</div>
                       </td>
-                      <td>${item.product.price}</td>
+                      <td>₹{Number(item.product.price).toLocaleString("en-IN")}</td>
                       <td>
                         <div className="d-flex align-items-center gap-1">
                           <button
@@ -125,7 +125,9 @@ const Cart = () => {
                           </button>
                         </div>
                       </td>
-                      <td className="fw-bold">${(item.product.price * item.quantity)}</td>
+                      <td className="fw-bold">
+  ₹{Number(item.product.price * item.quantity).toLocaleString("en-IN")}
+</td>
                       <td className="text-center">
                         <button
                           onClick={() => removeFromCart(item.product._id)}
@@ -198,25 +200,31 @@ const Cart = () => {
             
             <div className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted small">Subtotal:</span>
-              <span className="fw-semibold">${subtotal}</span>
+              <span className="fw-semibold">
+  ₹{Number(subtotal).toLocaleString("en-IN")}
+</span>
             </div>
 
             {coupon.code && (
               <div className="d-flex justify-content-between align-items-center mb-3 text-success">
                 <span className="small">Coupon Discount ({coupon.code}):</span>
-                <span className="fw-bold">-${discountAmount}</span>
+                <span className="fw-bold">
+  -₹{Number(discountAmount).toLocaleString("en-IN")}
+</span>
               </div>
             )}
 
             <div className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted small">GST (18%):</span>
-              <span className="fw-semibold">${gstAmount}</span>
+              <span className="fw-semibold">
+  ₹{Number(gstAmount).toLocaleString("en-IN")}
+</span>
             </div>
 
             <div className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted small">Shipping Charges:</span>
               <span className={shippingFee === 0 ? "text-success small fw-bold" : "fw-semibold"}>
-                {shippingFee === 0 ? "FREE Delivery" : `$${shippingFee}`}
+                {shippingFee === 0 ? "FREE Delivery" : `₹${shippingFee}`}
               </span>
             </div>
 
@@ -224,7 +232,9 @@ const Cart = () => {
 
             <div className="d-flex justify-content-between align-items-center mb-4">
               <span className="fw-bold">Total Amount:</span>
-              <span className="text-primary fw-extrabold fs-4">${grandTotal}</span>
+              <span className="text-primary fw-extrabold fs-4">
+  ₹{Number(grandTotal).toLocaleString("en-IN")}
+</span>
             </div>
 
             <Link to="/checkout" className="btn btn-gradient w-100 py-3 rounded-pill d-flex align-items-center justify-content-center fw-bold text-white">

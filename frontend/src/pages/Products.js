@@ -312,7 +312,7 @@ const Products = () => {
                         {product.category}
                       </span>
                     </td>
-                    <td className="fw-bold text-white">₹{product.price.toLocaleString("en-IN")}</td>
+                    <td className="fw-bold text-white">${product.price.toLocaleString("en-IN")}</td>
                     <td>
                       <div className="d-flex align-items-center gap-2">
                         <span

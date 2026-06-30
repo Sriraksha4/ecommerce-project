@@ -290,7 +290,7 @@ const toggleWishlist = async (req, res) => {
             user.wishlist.splice(index, 1);
             await user.save();
             return res.status(200).json({ message: "Removed from wishlist", wishlist: user.wishlist });
-        } else {
+        } else {    
             user.wishlist.push(productId);
             await user.save();
             return res.status(200).json({ message: "Added to wishlist", wishlist: user.wishlist });

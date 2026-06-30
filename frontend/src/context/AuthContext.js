@@ -19,10 +19,25 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (email, password, adminLogin = false) => {
     try {
       const response = await API.post("/users/login", { email, password });
       const { token: receivedToken, user: receivedUser } = response.data;
+      // Customer login should not allow admins
+if (!adminLogin && receivedUser.role === "admin") {
+  return {
+    success: false,
+    message: "Please use the Admin Login portal."
+  };
+}
+
+// Admin login should not allow customers
+if (adminLogin && receivedUser.role !== "admin") {
+  return {
+    success: false,
+    message: "Administrator access only."
+  };
+}
       
       localStorage.setItem("token", receivedToken);
       localStorage.setItem("user", JSON.stringify(receivedUser));

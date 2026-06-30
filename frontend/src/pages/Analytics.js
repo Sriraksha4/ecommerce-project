@@ -164,7 +164,7 @@ const Analytics = () => {
         <div className="col-12 col-md-4">
           <div className="stat-card p-4">
             <div className="text-muted small fw-bold mb-1">AVERAGE BASKET SIZE</div>
-            <h2 className="text-white fw-extrabold m-0">₹{averageOrderValue.toLocaleString("en-IN")}</h2>
+            <h2 className="text-white fw-extrabold m-0">${averageOrderValue.toLocaleString("en-IN")}</h2>
             <div className="small text-muted mt-2">Per order checkout cart average</div>
           </div>
         </div>
@@ -224,7 +224,7 @@ const Analytics = () => {
             <h6 className="text-primary fw-bold mb-2">Operational Strengths</h6>
             <ul className="text-muted small ps-3">
               <li className="mb-2">Strong customer acquisition curves driven by organic registration volumes ({stats.totalUsers} profiles active).</li>
-              <li className="mb-2">Revenue is stabilized at ₹{stats.totalRevenue?.toLocaleString("en-IN")} with consistent category checkouts.</li>
+              <li className="mb-2">Revenue is stabilized at ${stats.totalRevenue?.toLocaleString("en-IN")} with consistent category checkouts.</li>
               <li>Order fulfillment rate stands high with minimal cancelled statuses.</li>
             </ul>
           </div>
@@ -233,7 +233,7 @@ const Analytics = () => {
             <ul className="text-muted small ps-3">
               <li className="mb-2">Stock optimization: Monitor Low Stock status in Product Management closely to prevent purchase blockages.</li>
               <li className="mb-2">Increase category shelf: Introduce new labels to distribute sales concentrations.</li>
-              <li>Average basket checkouts stand at ₹{averageOrderValue.toLocaleString("en-IN")}, promotion campaigns could boost transaction size.</li>
+              <li>Average basket checkouts stand at ${averageOrderValue.toLocaleString("en-IN")}, promotion campaigns could boost transaction size.</li>
             </ul>
           </div>
         </div>

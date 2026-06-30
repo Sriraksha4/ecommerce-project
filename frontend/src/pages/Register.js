@@ -273,7 +273,7 @@ const Register = () => {
           <p className="text-center text-muted small mt-4 mb-0">
             Already have an account?{" "}
             <Link to="/login" className="text-primary text-decoration-none fw-semibold">
-              Sign In
+              Login
             </Link>
           </p>
         </form>

@@ -245,7 +245,7 @@ const Orders = () => {
                         {order.products?.map((p) => p.name).join(", ") || "No items listed"}
                       </div>
                     </td>
-                    <td className="fw-bold text-white">₹{order.totalAmount?.toLocaleString("en-IN") || "0"}</td>
+                    <td className="fw-bold text-white">${order.totalAmount?.toLocaleString("en-IN") || "0"}</td>
                     <td>
                       <span className={`badge-status badge-${order.status?.toLowerCase() || "pending"}`}>
                         {order.status}
@@ -319,7 +319,7 @@ const Orders = () => {
                     >
                       {products.map((p) => (
                         <option key={p._id} value={p._id}>
-                          {p.name} - ₹{p.price} (Stock: {p.stock})
+                          {p.name} - ${p.price} (Stock: {p.stock})
                         </option>
                       ))}
                     </select>
@@ -332,7 +332,7 @@ const Orders = () => {
                     </div>
                     <div className="d-flex justify-content-between align-items-center mt-2 border-top border-secondary border-opacity-10 pt-2">
                       <span className="text-muted small fw-bold">Total Amount:</span>
-                      <span className="text-primary fw-extrabold fs-5">₹{orderAmount.toLocaleString("en-IN")}</span>
+                      <span className="text-primary fw-extrabold fs-5">${orderAmount.toLocaleString("en-IN")}</span>
                     </div>
                   </div>
                 </div>

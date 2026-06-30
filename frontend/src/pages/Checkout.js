@@ -392,7 +392,7 @@ const Checkout = () => {
                 className="btn btn-gradient w-100 py-3 rounded-pill d-flex align-items-center justify-content-center fw-bold text-white mt-4"
                 disabled={cart.length === 0}
               >
-                <i className="bi-lock-fill me-2"></i> Authorize & Place Order (${grandTotal})
+                <i className="bi-lock-fill me-2"></i> Authorize & Place Order (₹{Number(grandTotal).toLocaleString("en-IN")})
               </button>
             </form>
           </div>
@@ -438,27 +438,35 @@ const Checkout = () => {
             <div className="border-top pt-3 mt-3" style={{ borderColor: "var(--card-border)" }}>
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <span className="text-muted small">Subtotal:</span>
-                <span className="small fw-semibold">${subtotal}</span>
+                <span className="small fw-semibold">
+  ₹{Number(subtotal).toLocaleString("en-IN")}
+</span>
               </div>
               {coupon.code && (
                 <div className="d-flex justify-content-between align-items-center mb-2 text-success">
                   <span className="small">Coupon Discount ({coupon.code}):</span>
-                  <span className="small fw-bold">-${discountAmount}</span>
+                  <span className="small fw-bold">
+  -₹{Number(discountAmount).toLocaleString("en-IN")}
+</span>
                 </div>
               )}
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <span className="text-muted small">GST (18%):</span>
-                <span className="small fw-semibold">${gstAmount}</span>
+                <span className="small fw-semibold">
+  ₹{Number(gstAmount).toLocaleString("en-IN")}
+</span>
               </div>
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <span className="text-muted small">Delivery Charges:</span>
                 <span className={shippingFee === 0 ? "text-success small fw-bold" : "small fw-semibold"}>
-                  {shippingFee === 0 ? "FREE" : `$${shippingFee}`}
+                  {shippingFee === 0 ? "FREE" : `₹${shippingFee}`}
                 </span>
               </div>
               <div className="d-flex justify-content-between align-items-center mt-3 border-top pt-3" style={{ borderColor: "var(--card-border)" }}>
                 <span className="fw-bold">Payable Balance:</span>
-                <span className="text-primary fw-extrabold fs-5">${grandTotal}</span>
+                <span className="text-primary fw-extrabold fs-5">
+  ₹{Number(grandTotal).toLocaleString("en-IN")}
+</span>
               </div>
             </div>
           </div>

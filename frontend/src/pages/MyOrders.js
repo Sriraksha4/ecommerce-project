@@ -68,7 +68,7 @@ const MyOrders = () => {
     }
     const sub = Math.round(order.totalAmount * 0.82);
     const gst = Math.round(order.totalAmount * 0.18);
-    const shipping = order.totalAmount > 1500 ? "FREE" : "$150";
+    const shipping = order.totalAmount > 1500 ? "FREE" : "₹150";
 
     printWindow.document.write(`
       <html>
@@ -124,7 +124,7 @@ const MyOrders = () => {
                       <div class="text-muted small">${p.brand || "Aura Brand"}</div>
                     </td>
                     <td>${p.category}</td>
-                    <td class="text-end">$${p.price}</td>
+                    <td class="text-end">₹${p.price}</td>
                   </tr>
                 ` : '').join('')}
               </tbody>
@@ -134,11 +134,11 @@ const MyOrders = () => {
                 <table class="table table-sm table-borderless">
                   <tr>
                     <td class="text-muted">Subtotal:</td>
-                    <td class="text-end fw-semibold">$${sub}</td>
+                    <td class="text-end fw-semibold">₹${sub}</td>
                   </tr>
                   <tr>
                     <td class="text-muted">GST (18%):</td>
-                    <td class="text-end fw-semibold">$${gst}</td>
+                    <td class="text-end fw-semibold">₹${gst}</td>
                   </tr>
                   <tr>
                     <td class="text-muted">Shipping Charges:</td>
@@ -146,7 +146,7 @@ const MyOrders = () => {
                   </tr>
                   <tr class="border-top">
                     <td class="fw-bold text-primary fs-5 pt-2">Paid Balance:</td>
-                    <td class="text-end fw-bold text-primary fs-5 pt-2">$${order.totalAmount}</td>
+                    <td class="text-end fw-bold text-primary fs-5 pt-2">₹${order.totalAmount}</td>
                   </tr>
                 </table>
               </div>

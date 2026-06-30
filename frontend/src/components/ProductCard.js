@@ -51,7 +51,7 @@ const ProductCard = ({ product }) => {
 
         <div className="d-flex align-items-center justify-content-between mb-4 mt-auto">
           <span className="text-muted extra-small" style={{ fontSize: "0.75rem" }}>PRICE</span>
-          <span className="text-white fw-extrabold fs-4">₹{product.price.toLocaleString("en-IN")}</span>
+          <span className="text-white fw-extrabold fs-4">${product.price.toLocaleString("en-IN")}</span>
         </div>
 
         <div className="d-flex gap-2">
