@@ -73,7 +73,7 @@ const MyOrders = () => {
     printWindow.document.write(`
       <html>
         <head>
-          <title>Invoice - AuraCommerce</title>
+          <title>Invoice - E-Commerce</title>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
           <style>
             body { font-family: 'Plus Jakarta Sans', sans-serif; padding: 40px; color: #0f172a; }
@@ -84,9 +84,9 @@ const MyOrders = () => {
           <div class="container invoice-card mt-4">
             <div class="d-flex justify-content-between mb-4">
               <div>
-                <h3 class="fw-bold text-primary">AuraCommerce</h3>
+                <h3 class="fw-bold text-primary">E-Commerce</h3>
                 <p class="text-muted small mb-0">Premium Retail Merchants</p>
-                <p class="text-muted extra-small">support@auracommerce.com</p>
+                <p class="text-muted extra-small">support@ecommerce.com</p>
               </div>
               <div class="text-end">
                 <h5 class="fw-bold text-uppercase">Tax Invoice</h5>
@@ -152,7 +152,7 @@ const MyOrders = () => {
               </div>
             </div>
             <hr class="mt-5">
-            <p class="text-center text-muted extra-small">Thank you for shopping at AuraCommerce! Keep this receipt for warranty claims.</p>
+            <p class="text-center text-muted extra-small">Thank you for shopping at E-Commerce! Keep this receipt for warranty claims.</p>
           </div>
         </body>
       </html>
@@ -268,7 +268,7 @@ const MyOrders = () => {
           </div>
           <h4 className="fw-semibold">No Orders Found</h4>
           <p className="text-muted max-w-600 mx-auto px-3">
-            You haven't placed any orders yet. Visit the catalog to add items to your cart and experience AuraCommerce.
+            You haven't placed any orders yet. Visit the catalog to add items to your cart and experience E-Commerce.
           </p>
           <Link to="/shop" className="btn btn-gradient rounded-pill px-4 mt-2">
             Browse Catalog
@@ -338,7 +338,7 @@ const MyOrders = () => {
                           </div>
                         </div>
                         <div className="text-end">
-                          <div className="fw-bold small">₹${product.price}</div>
+                          <div className="fw-bold small">₹{Number(product.price).toLocaleString("en-IN")}</div>
                           <span className="extra-small text-muted" style={{ fontSize: "0.7rem" }}>Quantity: 1</span>
                         </div>
                       </div>

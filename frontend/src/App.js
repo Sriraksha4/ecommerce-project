@@ -19,7 +19,6 @@ import Products from "./pages/Products";
 import Categories from "./pages/Categories";
 import Orders from "./pages/Orders";
 import Customers from "./pages/Customers";
-import AIGenerator from "./pages/AIGenerator";
 
 // Auth & Guards
 import Login from "./pages/Login";
@@ -30,11 +29,15 @@ import ProtectedRoute from "./components/ProtectedRoute";
 // Layout wrapper for Customer Storefront
 const StorefrontLayout = ({ children }) => {
   return (
-    <div className="d-flex flex-column min-vh-100" style={{ background: "var(--body-bg)", color: "var(--text-main)" }}>
+    <div
+      className="d-flex flex-column min-vh-100"
+      style={{
+        background: "var(--body-bg)",
+        color: "var(--text-main)",
+      }}
+    >
       <Navbar />
-      <main className="flex-grow-1 py-4">
-        {children}
-      </main>
+      <main className="flex-grow-1 py-4">{children}</main>
       <Footer />
     </div>
   );
@@ -49,7 +52,7 @@ function App() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/register" element={<Register />} />
 
-        {/* --- Customer Storefront Routes --- */}
+        {/* Customer Storefront */}
         <Route
           path="/"
           element={
@@ -58,6 +61,7 @@ function App() {
             </StorefrontLayout>
           }
         />
+
         <Route
           path="/shop"
           element={
@@ -66,6 +70,7 @@ function App() {
             </StorefrontLayout>
           }
         />
+
         <Route
           path="/product/:id"
           element={
@@ -74,6 +79,7 @@ function App() {
             </StorefrontLayout>
           }
         />
+
         <Route
           path="/cart"
           element={
@@ -82,6 +88,7 @@ function App() {
             </StorefrontLayout>
           }
         />
+
         <Route
           path="/checkout"
           element={
@@ -92,6 +99,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/my-orders"
           element={
@@ -102,6 +110,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/profile"
           element={
@@ -112,6 +121,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/wishlist"
           element={
@@ -123,7 +133,7 @@ function App() {
           }
         />
 
-        {/* --- Administrative Panel Routes --- */}
+        {/* Admin Panel */}
         <Route
           path="/dashboard"
           element={
@@ -134,6 +144,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/products"
           element={
@@ -144,6 +155,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/categories"
           element={
@@ -154,6 +166,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/orders"
           element={
@@ -164,6 +177,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/customers"
           element={
@@ -174,18 +188,8 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/ai-generator"
-          element={
-            <ProtectedRoute adminOnly={true}>
-              <Layout>
-                <AIGenerator />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
 
-        {/* Fallbacks */}
+        {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

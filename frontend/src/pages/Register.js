@@ -107,7 +107,7 @@ const Register = () => {
             <i className="bi-person-plus-fill text-primary fs-3"></i>
           </div>
           <h2 className="text-white fw-extrabold mb-1">Create Account</h2>
-          <p className="text-muted small">Register to start shopping on AuraCommerce</p>
+          <p className="text-muted small">Register to start shopping on E-Commerce</p>
         </div>
         {error && (
           <div className="alert alert-danger border-0 bg-danger bg-opacity-10 text-danger rounded-3 p-3 mb-4 d-flex align-items-center" role="alert">

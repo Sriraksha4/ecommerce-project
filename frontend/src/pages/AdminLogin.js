@@ -22,45 +22,40 @@ const AdminLogin = () => {
     return /\S+@\S+\.\S+/.test(email);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+  setSuccess("");
 
-    const { email, password } = formData;
+  const { email, password } = formData;
 
-    if (!email || !password) {
-      setError("Please fill in all fields.");
-      return;
-    }
+  if (!email || !password) {
+    setError("Please fill in all fields.");
+    return;
+  }
 
-    if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
+  if (!validateEmail(email)) {
+    setError("Please enter a valid email address.");
+    return;
+  }
 
-    setLoading(true);
-    const result = await login(email, password);
-    
-    if (result.success) {
-      // Check if user is an admin
-      if (result.user && result.user.role === "admin") {
-        setSuccess("Admin authorization verified! Access granted.");
-        setLoading(false);
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 1500);
-      } else {
-        // Log out immediately if not admin
-        logout();
-        setError("Access Denied: You do not have administrator permissions.");
-        setLoading(false);
-      }
-    } else {
-      setError(result.message);
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+
+  const result = await login(email, password, true);
+
+  setLoading(false);
+
+  if (result.success) {
+    setSuccess("Admin authorization verified! Access granted.");
+
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 1500);
+  } else {
+    logout();
+    setError(result.message);
+  }
+};
 
   return (
     <div className="auth-bg d-flex align-items-center justify-content-center min-vh-100" style={{ background: "radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%)" }}>
@@ -98,7 +93,7 @@ const AdminLogin = () => {
                 type="email"
                 name="email"
                 className="form-control form-control-custom ps-3"
-                placeholder="admin@auracommerce.com"
+                placeholder="admin@ecommerce.com"
                 value={formData.email}
                 onChange={handleChange}
                 disabled={loading}

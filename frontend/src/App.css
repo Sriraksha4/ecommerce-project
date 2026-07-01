@@ -697,3 +697,16 @@
     font-size: clamp(2.5rem, 14vw, 4rem);
   }
 }
+.dropdown-menu .dropdown-item {
+  color: white !important;
+  border-radius: 10px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #343a40 !important;
+  color: #FFD369 !important;
+}
+
+.dropdown-menu .dropdown-divider {
+  border-color: rgba(255,255,255,0.15);
+}

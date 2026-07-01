@@ -37,11 +37,23 @@ const addOrder = async (req, res) => {
 };
 const getOrders = async (req, res) => {
     try {
-        const orders = await Order.find()
-            .populate("user", "name email")
-            .populate("products");
+
+        const requestingUser = await User.findById(req.user.id);
+
+        let orders;
+
+        if (requestingUser.role === "admin") {
+            orders = await Order.find()
+                .populate("user", "name email")
+                .populate("products");
+        } else {
+            orders = await Order.find({ user: req.user.id })
+                .populate("user", "name email")
+                .populate("products");
+        }
 
         res.status(200).json(orders);
+
     } catch (error) {
         res.status(500).json({
             message: error.message

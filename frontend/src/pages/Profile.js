@@ -411,22 +411,12 @@ const Profile = () => {
           )}
         </div>
 
-        <div className="d-flex flex-wrap justify-content-between align-items-center gap-3">
-          <button
-            onClick={() => {
-              if (window.confirm("Are you sure you want to log out?")) {
-                logout();
-                navigate("/login");
-              }
-            }}
-            className="btn btn-gradient-secondary rounded-pill px-4 fw-bold"
-          >
-            <i className="bi-box-arrow-left me-2"></i>Sign Out
-          </button>
-          <span className="small text-muted">
-            {infoForm.gender ? `${infoForm.gender} • ` : ""}{infoForm.age ? `${infoForm.age} years` : "Age not set"}
-          </span>
-        </div>
+        <div className="text-end">
+  <span className="small text-muted">
+    {infoForm.gender ? `${infoForm.gender} • ` : ""}
+    {infoForm.age ? `${infoForm.age} years` : "Age not set"}
+  </span>
+</div>
       </div>
     </div>
   );

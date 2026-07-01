@@ -174,7 +174,7 @@ const AIGenerator = () => {
                   </>
                 ) : (
                   <>
-                    <i className="bi-cpu me-2"></i> Generate Copywriting
+                    <i className="bi-cpu me-2"></i> Generate Description
                   </>
                 )}
               </button>

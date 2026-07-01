@@ -11,7 +11,7 @@ const Sidebar = ({ collapsed }) => {
     { path: "/categories", label: "Categories", icon: "bi-tags" },
     { path: "/orders", label: "Orders", icon: "bi-cart-check" },
     { path: "/customers", label: "Customers", icon: "bi-people" },
-    { path: "/ai-generator", label: "AI Generator", icon: "bi-cpu" },
+    
   ];
   const handleLogout = () => {
     logout();
@@ -22,7 +22,7 @@ const Sidebar = ({ collapsed }) => {
       {/* Brand logo */}
       <div className="sidebar-brand">
         <i className="bi-shield-check text-primary"></i>
-        <span className="sidebar-brand-text fw-bold">Aura Console</span>
+        <span className="sidebar-brand-text fw-bold">E-Commerce Console</span>
       </div>
       {/* Menu links */}
       <ul className="sidebar-menu">

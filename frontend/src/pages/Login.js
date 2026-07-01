@@ -93,7 +93,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 className="form-control form-control-custom ps-3"
-                placeholder="admin@aura.com"
+                placeholder="admin@ecommerce.com"
                 value={formData.email}
                 onChange={handleChange}
                 disabled={loading}

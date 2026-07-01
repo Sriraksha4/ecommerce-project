@@ -30,7 +30,7 @@ async function run() {
     }
 
     // 2. Create master backup admin account if it doesn't exist
-    const backupEmail = "admin@auracommerce.com";
+    const backupEmail = "admin@ecommerce.com";
     const existingBackup = await User.findOne({ email: backupEmail });
     if (!existingBackup) {
       const hashedPassword = await bcrypt.hash("Admin@1234", 10);

@@ -212,7 +212,7 @@ const Home = () => {
                 <i className="bi-star-fill"></i>
                 <i className="bi-star-fill"></i>
               </div>
-              <p className="small mb-3" style={{ color: "var(--text-muted)" }}>"Exceptional quality products and lightning-fast delivery! AuraCommerce has completely redefined my online shopping experience. Strongly recommended."</p>
+              <p className="small mb-3" style={{ color: "var(--text-muted)" }}>"Exceptional quality products and lightning-fast delivery! E-Commerce has completely redefined my online shopping experience. Strongly recommended."</p>
               <div className="d-flex align-items-center gap-2 mt-auto">
                 <div className="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold" style={{ width: "36px", height: "36px", background: "var(--color-accent)" }}>S</div>
                 <div>

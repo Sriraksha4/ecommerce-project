@@ -84,8 +84,8 @@ const Dashboard = () => {
             </div>
             <span className="text-muted small fw-bold">TOTAL REVENUE</span>
             <h3 className="text-dark fw-extrabold mt-1 mb-0">
-              ${stats.totalRevenue?.toLocaleString("en-IN") || "0"}
-            </h3>
+  ₹{stats.totalRevenue?.toLocaleString("en-IN") || "0"}
+</h3>
             <div className="small mt-2 text-success fw-semibold">
               <i className="bi-arrow-up-short"></i> +12.5% <span className="text-muted fw-normal">since last month</span>
             </div>
@@ -174,7 +174,9 @@ const Dashboard = () => {
                             {order.products?.length || 0} product(s)
                           </span>
                         </td>
-                        <td className="fw-bold text-dark">${order.totalAmount || 0}</td>
+                        <td className="fw-bold text-dark">
+  ₹{Number(order.totalAmount || 0).toLocaleString("en-IN")}
+</td>
                         <td>
                           <span className={`badge-status badge-${order.status?.toLowerCase() || "pending"}`}>
                             {order.status}
@@ -221,7 +223,9 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="text-end">
-                      <div className="fw-bold text-dark">${product.price}</div>
+                      <div className="fw-bold text-dark">
+  ₹{Number(product.price || 0).toLocaleString("en-IN")}
+</div>
                       <div className={`extra-small ${product.stock <= 5 ? "text-danger fw-bold" : "text-muted"}`} style={{ fontSize: "0.7rem" }}>
                         Stock: {product.stock}
                       </div>

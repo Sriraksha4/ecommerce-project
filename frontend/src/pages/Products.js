@@ -67,40 +67,54 @@ const Products = () => {
   };
 
   const handleAiGenerateDescription = async () => {
-    if (!formData.name) {
-      alert("Please enter a Product Name first so the AI has context.");
-      return;
-    }
-    setAiWriting(true);
-    try {
-      const response = await API.post("/ai/generate-description", {
-        productName: formData.name,
-        specifications: `Category: ${formData.category || "General"}`,
-        features: "Premium standard edition",
-        targetAudience: "General Public"
-      });
-      if (response.data.success) {
-        // Handle structured JSON format or legacy plain text
-        const desc = response.data.data?.description || response.data.description;
-        if (desc) {
-          setFormData((prev) => ({
-            ...prev,
-            description: desc,
-          }));
-        } else {
-          alert("AI response did not contain a description copy.");
-        }
-      } else {
-        alert("AI generation did not return a description copy.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Failed to call AI copywriting models. Verify server API connection.");
-    } finally {
-      setAiWriting(false);
-    }
-  };
+  if (!formData.name) {
+    alert("Please enter a Product Name first.");
+    return;
+  }
 
+  setAiWriting(true);
+
+  try {
+    const response = await API.post("/ai/generate-description", {
+      productName: formData.name,
+
+      specifications:
+        formData.specifications ||
+        `Category: ${formData.category || "General"}`,
+
+      features:
+        formData.features || "Premium standard edition",
+
+      targetAudience:
+        formData.targetAudience || "General Public",
+
+      tone:
+        formData.tone || "Professional",
+    });
+
+    if (response.data.success) {
+      const desc =
+        response.data.data?.description ||
+        response.data.description;
+
+      if (desc) {
+        setFormData((prev) => ({
+          ...prev,
+          description: desc,
+        }));
+      } else {
+        alert("AI did not generate a description.");
+      }
+    } else {
+      alert("AI generation failed.");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Failed to connect to AI server.");
+  } finally {
+    setAiWriting(false);
+  }
+};
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -185,6 +199,32 @@ const Products = () => {
       setError(err.response?.data?.message || "Failed to delete product.");
     }
   };
+  const handleImageUpload = async (e) => {
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  const data = new FormData();
+  data.append("image", file);
+
+  try {
+    const res = await API.post("/upload", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    setFormData((prev) => ({
+      ...prev,
+      image: res.data.imageUrl,
+    }));
+
+    alert("Image uploaded successfully!");
+  } catch (err) {
+    console.error(err);
+    alert("Image upload failed.");
+  }
+};
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
@@ -287,69 +327,95 @@ const Products = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredProducts.map((product) => (
-                  <tr key={product._id}>
-                    <td>
-                      {product.image ? (
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="rounded-3"
-                          style={{ width: "50px", height: "50px", objectFit: "cover", border: "1px solid rgba(255,255,255,0.05)" }}
-                        />
-                      ) : (
-                        <div className="bg-dark rounded-3 d-flex align-items-center justify-content-center text-muted" style={{ width: "50px", height: "50px" }}>
-                          <i className="bi-image"></i>
-                        </div>
-                      )}
-                    </td>
-                    <td>
-                      <div className="fw-bold text-white mb-0">{product.name}</div>
-                      <div className="text-muted small text-truncate" style={{ maxWidth: "250px" }}>{product.description}</div>
-                    </td>
-                    <td>
-                      <span className="badge bg-dark bg-opacity-50 border border-secondary border-opacity-25 text-muted px-2 py-1">
-                        {product.category}
-                      </span>
-                    </td>
-                    <td className="fw-bold text-white">${product.price.toLocaleString("en-IN")}</td>
-                    <td>
-                      <div className="d-flex align-items-center gap-2">
-                        <span
-                          className={`badge-status badge-${
-                            product.stock === 0
-                              ? "cancelled"
-                              : product.stock <= 5
-                              ? "pending"
-                              : "delivered"
-                          }`}
-                        >
-                          {product.stock === 0 ? "Out of Stock" : product.stock <= 5 ? "Low Stock" : "In Stock"}
-                        </span>
-                        <span className="text-muted small">({product.stock} left)</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="d-flex justify-content-center gap-2">
-                        <button
-                          onClick={() => handleEditClick(product)}
-                          className="btn btn-outline-primary btn-sm rounded-3 px-3 border-secondary border-opacity-25 text-white"
-                          title="Edit"
-                        >
-                          <i className="bi-pencil"></i>
-                        </button>
-                        <button
-                          onClick={() => handleDeleteClick(product._id)}
-                          className="btn btn-outline-danger btn-sm rounded-3 px-3 border-secondary border-opacity-25 text-danger"
-                          title="Delete"
-                        >
-                          <i className="bi-trash"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+  {filteredProducts.map((product) => (
+    <tr key={product._id}>
+      <td>
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="rounded-3"
+            style={{
+              width: "50px",
+              height: "50px",
+              objectFit: "cover",
+              border: "1px solid rgba(255,255,255,0.05)",
+            }}
+          />
+        ) : (
+          <div
+            className="bg-dark rounded-3 d-flex align-items-center justify-content-center text-muted"
+            style={{ width: "50px", height: "50px" }}
+          >
+            <i className="bi-image"></i>
+          </div>
+        )}
+      </td>
+
+      <td>
+        <div className="fw-bold text-white">{product.name}</div>
+        <div
+          className="text-muted small text-truncate"
+          style={{ maxWidth: "250px" }}
+        >
+          {product.description}
+        </div>
+      </td>
+
+      <td>
+        <span className="badge bg-dark bg-opacity-50 border border-secondary border-opacity-25 text-muted px-2 py-1">
+          {product.category}
+        </span>
+      </td>
+
+      <td className="fw-bold text-white">
+        ₹{Number(product.price).toLocaleString("en-IN")}
+      </td>
+
+      <td>
+        <div className="d-flex align-items-center gap-2">
+          <span
+            className={`badge-status badge-${
+              product.stock === 0
+                ? "cancelled"
+                : product.stock <= 5
+                ? "pending"
+                : "delivered"
+            }`}
+          >
+            {product.stock === 0
+              ? "Out of Stock"
+              : product.stock <= 5
+              ? "Low Stock"
+              : "In Stock"}
+          </span>
+
+          <span className="text-muted small">
+            ({product.stock} left)
+          </span>
+        </div>
+      </td>
+
+      <td>
+        <div className="d-flex justify-content-center gap-2">
+          <button
+            onClick={() => handleEditClick(product)}
+            className="btn btn-outline-primary btn-sm rounded-3"
+          >
+            <i className="bi-pencil"></i>
+          </button>
+
+          <button
+            onClick={() => handleDeleteClick(product._id)}
+            className="btn btn-outline-danger btn-sm rounded-3"
+          >
+            <i className="bi-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  ))}
+</tbody>
             </table>
           </div>
         </div>
@@ -380,6 +446,56 @@ const Products = () => {
                       onChange={handleInputChange}
                       required
                     />
+                    <div className="mb-3">
+  <label className="form-label text-muted small fw-bold">
+    KEY FEATURES
+  </label>
+
+  <textarea
+    className="form-control form-control-custom"
+    rows="2"
+    placeholder="Example: 16GB RAM, Intel i7, SSD, Full HD Display"
+  ></textarea>
+</div>
+
+<div className="mb-3">
+  <label className="form-label text-muted small fw-bold">
+    SPECIFICATIONS
+  </label>
+
+  <textarea
+    className="form-control form-control-custom"
+    rows="2"
+    placeholder="Processor, RAM, Storage, Battery..."
+  ></textarea>
+</div>
+
+<div className="row">
+  <div className="col-md-6 mb-3">
+    <label className="form-label text-muted small fw-bold">
+      TARGET AUDIENCE
+    </label>
+
+    <input
+      type="text"
+      className="form-control form-control-custom"
+      placeholder="Students, Professionals..."
+    />
+  </div>
+
+  <div className="col-md-6 mb-3">
+    <label className="form-label text-muted small fw-bold">
+      TONE
+    </label>
+
+    <select className="form-select form-control-custom">
+      <option>Professional</option>
+      <option>Friendly</option>
+      <option>Luxury</option>
+      <option>Technical</option>
+    </select>
+  </div>
+</div>
                   </div>
 
                   <div className="mb-3">
@@ -397,7 +513,7 @@ const Products = () => {
                             Writing...
                           </>
                         ) : (
-                          "✨ AI Generate Copy"
+                          "✨AI Generate"
                         )}
                       </button>
                     </div>
@@ -454,17 +570,31 @@ const Products = () => {
                     </select>
                   </div>
 
-                  <div className="mb-3">
-                    <label className="form-label text-muted small fw-bold">IMAGE URL (OPTIONAL)</label>
-                    <input
-                      type="text"
-                      name="image"
-                      className="form-control form-control-custom"
-                      placeholder="https://example.com/product.jpg"
-                      value={formData.image}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+                 <div className="mb-3">
+  <label className="form-label text-muted small fw-bold">
+    PRODUCT IMAGE
+  </label>
+
+  <input
+    type="file"
+    accept="image/*"
+    className="form-control form-control-custom"
+    onChange={handleImageUpload}
+  />
+
+  {formData.image && (
+    <img
+      src={formData.image}
+      alt="Preview"
+      className="img-thumbnail mt-3"
+      style={{
+        width: "120px",
+        height: "120px",
+        objectFit: "cover",
+      }}
+    />
+  )}
+</div>
                 </div>
                 <div className="modal-footer modal-footer-custom">
                   <button
@@ -526,7 +656,7 @@ const Products = () => {
                             Writing...
                           </>
                         ) : (
-                          "✨ AI Generate Copy"
+                          "✨ Generate Description"
                         )}
                       </button>
                     </div>
@@ -584,15 +714,30 @@ const Products = () => {
                   </div>
 
                   <div className="mb-3">
-                    <label className="form-label text-muted small fw-bold">IMAGE URL</label>
-                    <input
-                      type="text"
-                      name="image"
-                      className="form-control form-control-custom"
-                      value={formData.image}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+  <label className="form-label text-muted small fw-bold">
+    PRODUCT IMAGE
+  </label>
+
+  <input
+    type="file"
+    accept="image/*"
+    className="form-control form-control-custom"
+    onChange={handleImageUpload}
+  />
+
+  {formData.image && (
+    <img
+      src={formData.image}
+      alt="Preview"
+      className="img-thumbnail mt-3"
+      style={{
+        width: "120px",
+        height: "120px",
+        objectFit: "cover",
+      }}
+    />
+  )}
+</div>
                 </div>
                 <div className="modal-footer modal-footer-custom">
                   <button

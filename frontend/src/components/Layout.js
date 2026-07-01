@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
               <i className={`bi ${collapsed ? "bi-list" : "bi-arrow-left-short"} fs-5`}></i>
             </button>
             <div>
-              <p className="mb-1 section-kicker">Enterprise Console</p>
+              <p className="mb-1 section-kicker">E-Commerce Admin</p>
               <h4 className="m-0 fw-semibold">{getPageTitle()}</h4>
             </div>
           </div>

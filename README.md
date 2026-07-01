@@ -1,6 +1,6 @@
-# AuraCommerce - Smart E-Commerce Management System with AI Assistant & Analytics
+# E-Commerce - Smart E-Commerce Management System with AI Assistant & Analytics
 
-A premium, scalable, and intelligent dual-sided e-commerce platform built using the MERN stack. AuraCommerce integrates Google Gemini AI for smart product copywriting, an ETL-driven analytics dashboard for sales tracking, and secure dual-role workflows for customers and administrators.
+A premium, scalable, and intelligent dual-sided e-commerce platform built using the MERN stack. E-Commerce integrates Google Gemini AI for smart product copywriting, an ETL-driven analytics dashboard for sales tracking, and secure dual-role workflows for customers and administrators.
 
 Conducted in collaboration with the **Commonwealth Bank of Australia (CBA)** and **TeamLease Foundation** (June 2026).
 
@@ -149,7 +149,7 @@ To promote a registered email address to **Admin**, run:
 ```bash
 node promote_admin.js
 ```
-*(Promotes `srirakshakr.4@gmail.com` to admin role and sets up the backup administrator `admin@auracommerce.com` with password `Admin@1234`)*
+*(Promotes `srirakshakr.4@gmail.com` to admin role and sets up the backup administrator `admin@ecommerce.com` with password `Admin@1234`)*
 
 ---
 

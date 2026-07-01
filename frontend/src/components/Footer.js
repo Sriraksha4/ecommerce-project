@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Brand info */}
           <div className="col-12 col-md-4">
             <h5 className="fw-bold d-flex align-items-center mb-3 footer-brand-luxury">
-              <i className="bi-bag-heart-fill me-2"></i> AuraCommerce
+              <i className="bi-bag-heart-fill me-2"></i> Commerce
             </h5>
             <p className="small lh-lg">
               Explore premium products curated for your daily lifestyle. Shop with speed, security, and full tracking dashboards.
@@ -45,7 +45,7 @@ const Footer = () => {
               <i className="bi-geo-alt me-2 text-primary"></i> 102 E-Commerce Park, Tech Zone, Bengaluru, India
             </p>
             <p className="small mb-2">
-              <i className="bi-envelope me-2 text-primary"></i> support@auracommerce.com
+              <i className="bi-envelope me-2 text-primary"></i> support@ecommerce.com
             </p>
             <p className="small">
               <i className="bi-telephone me-2 text-primary"></i> +91 80 4910 2000
@@ -57,7 +57,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
           <p className="small mb-0 text-muted">
-            &copy; {new Date().getFullYear()} AuraCommerce Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} E-Commerce Inc. All rights reserved.
           </p>
           <div className="d-flex gap-3 small text-muted">
             <a href="#privacy" className="text-muted text-decoration-none">Privacy Policy</a>
