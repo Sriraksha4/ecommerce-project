@@ -75,12 +75,14 @@ const updateStock = async (req, res) => {
 };
 const exportOrders = async (req, res) => {
     try {
-        const orders = await Order.find();
+        const orders = await Order.find()
+.populate("user", "name email")
+.populate("products", "name");
 
         res.status(200).json({
-            count: orders.length,
-            data: orders
-        });
+    count: orders.length,
+    orders: orders
+});
     } catch (error) {
         res.status(500).json({
             message: error.message

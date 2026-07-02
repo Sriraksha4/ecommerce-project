@@ -11,6 +11,7 @@ import Checkout from "./pages/Checkout";
 import MyOrders from "./pages/MyOrders";
 import Profile from "./pages/Profile";
 import Wishlist from "./pages/Wishlist";
+import Analytics from "./pages/Analytics";
 
 // Admin Panel Components & Pages
 import Layout from "./components/Layout";
@@ -188,6 +189,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+  path="/analytics"
+  element={
+    <ProtectedRoute adminOnly={true}>
+      <Layout>
+        <Analytics />
+      </Layout>
+    </ProtectedRoute>
+  }
+/>
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

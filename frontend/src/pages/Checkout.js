@@ -120,7 +120,7 @@ const Checkout = () => {
         paymentMethod
       });
 
-      setSuccess(response.data.message || "Order placed successfully! Aura Trust Delivery initiated.");
+      setSuccess(response.data.message || "Order placed successfully! E-Commerce Trust Delivery initiated.");
       clearCart();
       
       setTimeout(() => {

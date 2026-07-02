@@ -98,7 +98,7 @@ export const LineChart = ({ data }) => {
               fontSize="10"
               textAnchor="end"
             >
-              ${line.value.toLocaleString("en-IN")}
+              ₹{line.value.toLocaleString("en-IN")}
             </text>
           </g>
         ))}
@@ -163,7 +163,9 @@ export const LineChart = ({ data }) => {
           }}
         >
           <div className="text-muted extra-small">{hoveredPoint.label}</div>
-          <div className="fw-bold">${hoveredPoint.value.toLocaleString("en-IN")}</div>
+          <div className="fw-bold">
+    ₹{hoveredPoint.value.toLocaleString("en-IN")}
+</div>
         </div>
       )}
     </div>
